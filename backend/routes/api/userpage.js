@@ -56,8 +56,7 @@ router.get('/:id(\\d+)/followingstatus',
         } else{
         //set current user
         const currentUser = user.toSafeObject()
-        const userId =
-            req.params.id;
+        const userId =req.params.id;
         const ownId = currentUser.id;
         //if looking at own page, do not show the button
         //========TODO: prolly do this on render page==========
@@ -87,32 +86,46 @@ router.get('/:id(\\d+)/followingstatus',
 router.post('/:id(\\d+)/followingstatus',
     restoreUser,
     asyncHandler(async function(req,res){
+        //this will be hit with "follow"
+        //conditional render:
+        //only render when 1) there is user and 2)there is no follow relation
 
-
+        //currentUserId
+        const { user } = req;
+        //if not logged in, do not show the button
+        if (!user) {
+            return undefined;
+        }
+        //set current user
+        const currentUser = user.toSafeObject()
+        const ownId = currentUser.id;
+        const userId = req.params.id;
+        const newFollow = await db.Follow.create({userId: userId, followerId: ownId});
+        return newFollow;
     }
     )
 );
 
 //DELETE route
 //for unfollow
+//ONLY render when there is already a relation
 router.delete('/:id(\\d+)/followingstatus',
     restoreUser,
     asyncHandler(async function(req,res){
-
-
+        const myFollow = await db.Follow.findAll({
+            where:
+            {
+                userId: userId,
+                followerId: ownId}
+        });
+        //case where there is no relation;
+        if (!myFollow)
+            return;
+        //case where there is a relation
+        const deletion = await db.Follow.destroy(myFollow);
+        return deletion;
     }
     )
 );
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
