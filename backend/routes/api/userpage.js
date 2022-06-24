@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require ("express-async-handler");
 const cookieParser = require("cookie-parser")
-const { setTokenCookie, requireAuth } = require ("../../utils/auth");
+const { setTokenCookie, requireAuth,restoreUser } = require ("../../utils/auth");
 router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
 const db = require('../../db/models')
 
 
 //this will be accessed through/api/userinfo
-
 //TODO:
 //get posts of the author
 //GET ROUTE
@@ -41,21 +40,43 @@ router.get('/:id(\\d+)/following', asyncHandler(async function(req,res){
     }
 }))
 
+
+
 //GET ROUTE to understand the status of following
 //GET ROUTE
 //show the status if logged in
-router.get('/:id(\\d+)/followingstatus', asyncHandler(async function(req,res){
-    const userId = req.params.id;
-    const ownId = req.user.id;
-    console.log(`CHECKPOINT FOR FOLLOWINGSTATUS ${ownId}`)
-    const myFollow = await db.Follow.findAll({
-        where:
-        {userId: userId,
-         followerId: ownId}
-    });
-    return res.json(myFollow);
-
-    //need to do it in conditional
+router.get('/:id(\\d+)/followingstatus',
+    restoreUser,
+    asyncHandler(async function(req,res){
+        //get current User Id
+        const { user } = req;
+        //if not logged in, do not show the button
+        if (!user) {
+            return undefined;
+        } else{
+        //set current user
+        const currentUser = user.toSafeObject()
+        const userId =
+            req.params.id;
+        const ownId = currentUser.id;
+        //if looking at own page, do not show the button
+        //========TODO: prolly do this on render page==========
+        // if (userId===ownId) return res.json({message: "NA"});
+        console.log(`CHECKPOINT FOR FOLLOWINGSTATUS ${ownId}`)
+        //now find the relation
+        const myFollow = await db.Follow.findAll({
+            where:
+            {
+                userId: userId,
+                followerId: ownId}
+        });
+        //if there is the follow, there would be a return
+        if (myFollow)
+            return res.json(myFollow);
+        //this will have the expected return:
+        //if followed, there would be the relation
+        //if not, there would not be anything
+    }
 
 }));
 
@@ -63,10 +84,25 @@ router.get('/:id(\\d+)/followingstatus', asyncHandler(async function(req,res){
 
 //potentially follow
 //POST route
+router.post('/:id(\\d+)/followingstatus',
+    restoreUser,
+    asyncHandler(async function(req,res){
 
+
+    }
+    )
+);
 
 //DELETE route
 //for unfollow
+router.delete('/:id(\\d+)/followingstatus',
+    restoreUser,
+    asyncHandler(async function(req,res){
+
+
+    }
+    )
+);
 
 
 
