@@ -50,10 +50,10 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
-    User.hasMany(models.Post, {foreignKey: 'authorId'});
+    User.hasMany(models.Post, {foreignKey: 'authorId',onDelete: 'CASCADE', hooks: true});
     User.hasMany(models.Comment, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
-    User.hasMany(models.Follow, {foreignKey: 'followerId', onDelete: 'CASCADE', hooks: true} );
-    User.hasMany(models.Follow, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Follow, { as: 'followed', foreignKey: 'userId', onDelete: 'CASCADE', hooks: true} );
+    User.hasMany(models.Follow, { as: 'follower', foreignKey: 'followerId', onDelete: 'CASCADE', hooks: true} );
 
   };
 

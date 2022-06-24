@@ -46,7 +46,7 @@ router.get('/:id(\\d+)/following', asyncHandler(async function(req,res){
 //show the status if logged in
 router.get('/:id(\\d+)/followingstatus', asyncHandler(async function(req,res){
     const userId = req.params.id;
-    const ownId = req.sessionID;
+    const ownId = req.user.id;
     console.log(`CHECKPOINT FOR FOLLOWINGSTATUS ${ownId}`)
     const myFollow = await db.Follow.findAll({
         where:
