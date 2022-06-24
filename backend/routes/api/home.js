@@ -2,20 +2,23 @@ const express = require('express');
 const asyncHandler = require ("express-async-handler");
 
 //database
-const User = require ("../../db/seeders/20220623174632-demo-user.js");
-const Post = require ("../../db/seeders/20220624034954-demo-post")
-
+const db = require('../../db/models')
 const router = express.Router();
-
-
-
-
 
 
 
 //================API for home page================
 //GET
+//TODO:
 //need to fetch 5 latest pages*
+
+
+router.get('/', asyncHandler(async function(_req, res) {
+    console.log("Hit API Route!");
+    const posts = await db.Post.findAll(); //need to do limit
+   return res.json(posts);
+}));
+
 
 
 

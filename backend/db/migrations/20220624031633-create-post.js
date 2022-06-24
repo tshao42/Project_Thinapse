@@ -10,7 +10,8 @@ module.exports = {
       },
       authorId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {model: 'Users'}
       },
       title: {
         type: Sequelize.STRING,
