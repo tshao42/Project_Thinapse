@@ -159,7 +159,7 @@ router.delete(
         const ownId = currentUser.id;
 
         const commentId = req.params.id;
-        const comment = await db.Post.findByPk(postId);
+        const comment = await db.Post.findByPk(commentId);
         CheckPermissions(comment, ownId)
         const id = await db. Comment.destroy(comment);
         return res.json({id});
