@@ -50,6 +50,12 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
+    User.hasMany(models.Comment, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Comment, {foreignKey: 'postId', onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Follow, {foreignKey: 'followerId', onDelete: 'CASCADE', hooks: true} );
+    User.hasMany(models.Follow, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Post, {foreignKey: 'authorId', onDelete: 'CASCADE', hooks: true});
+
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
