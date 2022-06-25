@@ -51,17 +51,19 @@ export const loadSinglePost = (postId) => async dispatch =>{
 }
 
 export const createPost = (payload) => async dispatch =>{
-    const response = await csrfFetch('/api/posts',{
-        method: 'POST',
-        headers:{ 'Content-Type' : 'application/json' },
-        body: JSON.stringify(payload)
-    })
-    if (response.ok) {
-        const post = await response.json()
-        dispatch(create(post))
-        return post;
-      }
-}
+        const response = await csrfFetch(`/api/posts`,{
+            method: 'POST',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+            const post = await response.json();
+            dispatch(create(post));
+            return post;
+    }
+};
 
 
 export const updatePost = (postId, payload) => async dispatch => {
@@ -110,6 +112,10 @@ const postsReducer = (state = initialState, action) => {
         singleLoad.posts[postId] = action.post;
         return singleLoad;
       case CREATE:
+        return {
+            ...state,
+            [action.post.id]: action.post
+          };
       case UPDATE:
         return {
           ...state,

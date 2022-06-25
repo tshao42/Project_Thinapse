@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
 import SinglePost from "./components/Post";
+import WriteNew from "./components/WriteNew";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path ="/posts/:postId">
             <SinglePost />
+          </Route>
+          <Route path ="/write">
+            <WriteNew />
           </Route>
         </Switch>
       )}

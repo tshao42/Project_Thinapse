@@ -13,7 +13,7 @@ const { Result } = require('express-validator');
 //TODO:
 //need to fetch 5 latest pages*
 
-
+//this is working
 router.get('/', asyncHandler(async function(_req, res) {
     const posts = await db.Post.findAll({
         include:[{
@@ -27,6 +27,7 @@ router.get('/', asyncHandler(async function(_req, res) {
 
 
 //READ
+//this is working
 router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
     const postId = req.params.id;
     const post = await db.Post.findByPk(postId,{
@@ -45,18 +46,12 @@ router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
 ));
 
 //CREATE
-router.post('/',asyncHandler(requireAuth,
-    restoreUser,
+router.post('/',asyncHandler,
     async function(req, res) {
-    const { user } = req;
-    //if not logged in, do not show the button
-    if (!user) {
-        return Error;
-    }
     const id = await db.Post.create(req.body);
-    return res.redirect(`${req.baseUrl}.${id}`);
+    return res.json(id);
 }
-));
+);
 
 //error handling
 const CheckPermissions = (post, currentUserId)=>{
