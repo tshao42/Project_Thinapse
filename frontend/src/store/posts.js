@@ -8,7 +8,7 @@ export const UPDATE = "posts/LOAD";
 
 const loadall = (posts)=>({
     type: LOAD_POSTS,
-    posts
+    posts   //this is an array
 })
 
 // const load = (post)=>({
@@ -31,8 +31,10 @@ const remove = (postId, userId) => ({
     userId
 })
 
+//okay
 export const getAllPosts =() => async dispatch => {
-    const response = await csrfFetch(`/api/`);
+    const response = await csrfFetch(`/api/posts`);
+    //this returns an array of objects
     console.log(`response from getAllPosts!`);
     if (response.ok){
         const posts = await response.json();
@@ -88,20 +90,16 @@ export const deletePost = (postId, userId) => async dispatch => {
 }
 
 //!END
-const initialState = { posts: [] };
+const initialState = {posts:{}};
 
 
 const postsReducer = (state = initialState, action) => {
     switch (action.type) {
       case LOAD_POSTS:
-        const newPosts = {};
-        action.posts.forEach(post => {
-          newPosts[post.id] = post;
-        })
-        return {
-          ...state,
-          ...newPosts
-        }
+        const loadedPosts = {...state, posts:{...state.posts}};
+        action.posts.forEach(
+            (post) => (loadedPosts.posts[post.id]=post));
+        return loadedPosts;
       case REMOVE:
         const newState = { ...state };
         delete newState[action.postId];
