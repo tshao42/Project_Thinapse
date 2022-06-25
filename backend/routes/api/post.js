@@ -29,12 +29,14 @@ router.get('/', asyncHandler(async function(_req, res) {
 //READ
 router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
     const postId = req.params.id;
-    const post = await db.Post.findByPk(postId);
+    const post = await db.Post.findByPk(postId,{
+        include:[{
+            model: db.User,
+            required:false
+        }]
+    });
 
-        const authorId = post.authorId;
-        const authorInfo = db.User.findByPk(authorId);
     if (post){
-        post.user=authorInfo;
         return res.json(post);
     }
     else

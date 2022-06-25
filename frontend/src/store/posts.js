@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 export const LOAD_POSTS = "posts/LOAD_POSTS";
-// export const LOAD = "posts/LOAD";
+export const LOAD = "posts/LOAD";
 export const REMOVE = "posts/REMOVE";
 export const CREATE = "posts/CREATE";
 export const UPDATE = "posts/LOAD";
@@ -11,10 +11,10 @@ const loadall = (posts)=>({
     posts   //this is an array
 })
 
-// const load = (post)=>({
-//     type: LOAD,
-//     post
-// });
+const load = (post)=>({
+    type: LOAD,
+    post
+});
 
 const update = (post)=>({
     type: UPDATE,
@@ -34,8 +34,8 @@ const remove = (postId, userId) => ({
 //okay
 export const getAllPosts =() => async dispatch => {
     const response = await csrfFetch(`/api/posts`);
-    //this returns an array of objects
-    console.log(`response from getAllPosts!`);
+
+    // console.log(`response from getAllPosts!`);
     if (response.ok){
         const posts = await response.json();
         dispatch(loadall(posts));
@@ -46,7 +46,7 @@ export const loadSinglePost = (postId) => async dispatch =>{
     const response = await csrfFetch (`/api/posts/${postId}`);
     if (response.ok){
         const post = await response.json();
-        dispatch(loadall(post));
+        dispatch(load(post));
     } else return false;
 }
 
@@ -104,6 +104,11 @@ const postsReducer = (state = initialState, action) => {
         const newState = { ...state };
         delete newState[action.postId];
         return newState;
+      case LOAD:
+        const singleLoad = {...state, posts:{...state.posts}};
+        let postId= action.post.id;
+        singleLoad.posts[postId] = action.post;
+        return singleLoad;
       case CREATE:
       case UPDATE:
         return {

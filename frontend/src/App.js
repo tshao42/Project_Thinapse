@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
+import SinglePost from "./components/Post";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <ArticleList />
+          </Route>
+          <Route path ="/posts/:postId">
+            <SinglePost />
           </Route>
         </Switch>
       )}

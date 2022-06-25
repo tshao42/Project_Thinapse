@@ -12,9 +12,6 @@ function ArticleList(){
     const allPosts = useSelector(state => {
         return state.posts.posts;
     });
-    const allUsers = useSelector(state=>{
-        return state
-    })
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])
