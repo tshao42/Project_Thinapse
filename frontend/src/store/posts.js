@@ -31,9 +31,9 @@ const remove = (postId, userId) => ({
     userId
 })
 
-export const getAllPosts = () => async dispatch => {
+export const getAllPosts =() => async dispatch => {
     const response = await csrfFetch(`/api/`);
-
+    console.log(`response from getAllPosts!`);
     if (response.ok){
         const posts = await response.json();
         dispatch(loadall(posts));
@@ -83,11 +83,12 @@ export const deletePost = (postId, userId) => async dispatch => {
     if(response.ok) {
         const { id: deletedPostId } = await response.json();
         dispatch(remove(deletedPostId, postId, userId));
-        return deletedPostId;
+        return;
     }
 }
 
-const initialState = {};
+//!END
+const initialState = { posts: [] };
 
 
 const postsReducer = (state = initialState, action) => {

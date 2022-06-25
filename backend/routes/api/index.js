@@ -20,6 +20,5 @@ router.use('/', homeRouter);
 router.use('/posts', postRouter);
 
 //users page
-router.use('/userinfo', userRouter)
-
+router.use('/userinfo', userRouter);
 module.exports = router;

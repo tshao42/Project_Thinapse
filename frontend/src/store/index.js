@@ -8,7 +8,6 @@ const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   posts: postsReducer
-
 });
 
 
