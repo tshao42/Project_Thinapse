@@ -5,10 +5,24 @@ const cookieParser = require("cookie-parser")
 const { setTokenCookie, requireAuth,restoreUser } = require ("../../utils/auth");
 router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
-const db = require('../../db/models')
+const db = require('../../db/models');
+const { Result } = require('express-validator');
 
-router.get('',asyncHandler(async function(req, res){
-    return (`Test Route`);
+//================API for home page================
+//GET
+//TODO:
+//need to fetch 5 latest pages*
+
+
+router.get('/', asyncHandler(async function(_req, res) {
+    const posts = await db.Post.findAll({
+        include:[{
+            model: db.User,
+            required:false
+        }]
+    })
+    console.log(posts);
+    return res.json(posts);
 }));
 
 
@@ -16,8 +30,13 @@ router.get('',asyncHandler(async function(req, res){
 router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
     const postId = req.params.id;
     const post = await db.Post.findByPk(postId);
-    if (post)
+
+        const authorId = post.authorId;
+        const authorInfo = db.User.findByPk(authorId);
+    if (post){
+        post.user=authorInfo;
         return res.json(post);
+    }
     else
         return res.redirect('/');
 }

@@ -24,10 +24,10 @@ function ArticleList(){
             <h1>ThoughtBubbleDivider!</h1>
             <h2>The posts we are bringing you:</h2>
             <ul>
-                {Object.values(allPosts).map(({id,title,user})=>(
+                {Object.values(allPosts).map(({id,title,User})=>(
                     <div>
                         <h2>{id}</h2>
-                        <h3>{user.username}</h3>
+                        <h3>{User.username}</h3>
                         <h2>{title}</h2>
                     </div>
                 ))}
