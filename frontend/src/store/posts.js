@@ -51,18 +51,17 @@ export const loadSinglePost = (postId) => async dispatch =>{
 }
 
 export const createPost = (payload) => async dispatch =>{
-        const response = await csrfFetch(`/api/posts`,{
-            method: 'POST',
-            headers:{
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!response.ok) {
-            const post = await response.json();
-            dispatch(create(post));
-            return post;
-    }
+    const {authorId, title, body} = payload;
+    const response = await csrfFetch(`/api/posts`,{
+        method: 'POST',
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({authorId, title, body})
+    });
+    const post = await response.json();
+    dispatch(create(post));
+    return post;
 };
 
 

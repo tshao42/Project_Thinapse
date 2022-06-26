@@ -46,11 +46,16 @@ router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
 ));
 
 //CREATE
-router.post('/',asyncHandler,
-    async function(req, res) {
-    const id = await db.Post.create(req.body);
-    return res.json(id);
-}
+//IT SHOULD BE WORKING
+router.post(
+    '/',
+    // requireAuth,
+    // restoreUser,
+    asyncHandler(async function (req, res) {
+    const id = await db.Post.build(req.body);
+    const newPost = await id.save();
+    res.json(newPost);
+})
 );
 
 //error handling
