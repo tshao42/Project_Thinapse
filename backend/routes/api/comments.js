@@ -36,8 +36,9 @@ router.get('/forpost/:id(\\d+)',asyncHandler(async function(req, res) {
 ));
 
 //CREATE
-router.post('/',asyncHandler(requireAuth,
-    restoreUser,
+router.post('/',asyncHandler(
+    // requireAuth,
+    // restoreUser,
     async function(req, res) {
     // const postId = req.params.id;
     // const { user } = req;
@@ -79,9 +80,9 @@ router.put(
 //DELETE
 
 router.delete(
-    '/:id(\\d+)/comments/:commentId(\\d+)',
-    requireAuth,
-    restoreUser,
+    '/:commentId(\\d+)',
+    // requireAuth,
+    // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
         // const { user } = req;

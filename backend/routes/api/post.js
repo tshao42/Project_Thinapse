@@ -49,8 +49,8 @@ router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
 //IT SHOULD BE WORKING
 router.post(
     '/',
-    requireAuth,
-    restoreUser,
+    // requireAuth,
+    // restoreUser,
     asyncHandler(async function (req, res) {
     const id = await db.Post.build(req.body);
     const newPost = await id.save();

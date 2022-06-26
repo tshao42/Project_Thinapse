@@ -58,14 +58,14 @@ export const updateComment = (commentId, postId, payload) => async dispatch => {
     }
 }
 
-export const deleteComment = (postId,commentId, userId) => async dispatch => {
-    const response = await csrfFetch(`/api/posts/${postId}/comments/${commentId}`, {
+export const deleteComment = (commentId) => async dispatch => {
+    const response = await csrfFetch(`/api/comments/${commentId}`, {
         method: 'DELETE',
     })
 
     if(response.ok) {
         const { id: deletedCommentId } = await response.json();
-        dispatch(remove(deletedCommentId, postId, userId));
+        dispatch(remove(deletedCommentId));
         return deletedCommentId;
     }
 }

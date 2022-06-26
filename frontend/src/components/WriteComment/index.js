@@ -13,10 +13,6 @@ function WriteComment(){
     const dispatch = useDispatch();
     const [body, setBody] = useState("");
     const currentUser = useSelector((state) => state.session.user);
-    useEffect(() => {
-        dispatch(getAllComments(postId));
-    },[dispatch])
-
     const handleSubmit = (e)=>{
         e.preventDefault();
         //payload
