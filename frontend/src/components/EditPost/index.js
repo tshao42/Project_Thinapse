@@ -15,6 +15,7 @@ function EditPost({post,User}){
     //use dispatch
     const dispatch = useDispatch();
     const history = useHistory();
+
     useEffect(() => {
         dispatch(loadSinglePost(postId));
     },[dispatch, post])
