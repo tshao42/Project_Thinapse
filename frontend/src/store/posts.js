@@ -114,11 +114,6 @@ const postsReducer = (state = initialState, action) => {
             ...state,
             [action.post.id]: action.post
           };
-    //   case UPDATE:
-    //     return {
-    //         ...state,
-    //         [action.post.id]: action.post
-    //     };
       default:
         return state;
     }

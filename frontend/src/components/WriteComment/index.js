@@ -4,29 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import './WriteComment.css';
 import { createComment } from '../../store/comments';
+import { getAllComments } from '../../store/comments';
 
 
 
 function WriteComment(){
     const {postId} = useParams();
     const dispatch = useDispatch();
-
     const [body, setBody] = useState("");
     const currentUser = useSelector((state) => state.session.user);
-    const handleSubmit = async(e)=>{
+    useEffect(() => {
+        dispatch(getAllComments(postId));
+    },[dispatch])
+
+    const handleSubmit = (e)=>{
         e.preventDefault();
         //payload
         const payload = {
             userId: currentUser.id,
-            body,
             postId,
-            User: currentUser
+            body
         }
         console.log(`handleSubmit here ${payload}`);
-        dispatch(createComment(postId, payload));
+            dispatch(createComment(payload));
 //error handling
-
-}
+    }
 
     return(
         <div>

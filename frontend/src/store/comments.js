@@ -29,18 +29,20 @@ export const getAllComments = (postId) => async dispatch => {
     }
 }
 
-export const createComment = (postId, payload) => async dispatch =>{
-    console.log(`currently hitting the route /api/posts/${postId}/comments}`)
+export const createComment = (payload) => async dispatch =>{
+    console.log(`currently hitting the route /api/comments`)
+    const {userId, postId, body} = payload;
+    console.log(`the Payload is: ${userId} ${postId} ${body}`);
     const response = await csrfFetch(`/api/comments`,{
         method: 'POST',
-        headers:{ 'Content-Type' : 'application/json' },
-        body: JSON.stringify(postId,payload)
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({userId, postId, body})
     })
-    if (response.ok) {
         const comment = await response.json()
         dispatch(create(comment))
         return comment;
-      }
 }
 
 export const updateComment = (commentId, postId, payload) => async dispatch => {

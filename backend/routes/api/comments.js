@@ -36,7 +36,7 @@ router.get('/forpost/:id(\\d+)',asyncHandler(async function(req, res) {
 ));
 
 //CREATE
-router.post('/comments',asyncHandler(requireAuth,
+router.post('/',asyncHandler(requireAuth,
     restoreUser,
     async function(req, res) {
     // const postId = req.params.id;
@@ -44,8 +44,9 @@ router.post('/comments',asyncHandler(requireAuth,
     // if (!user) {
     //     return Error;
     // }
-    const newComment = await db.Comment.build(req.body);
+    const newComment = await db.Comment.create(req.body);
     const savedComment = await newComment.save();
+    console.log(`what we created: ${savedComment.toJSON()}`)
     return res.json(savedComment);
     }
 ));
