@@ -19,7 +19,7 @@ function SinglePost(){
     });
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch, postId])
+    },[dispatch, postId, posts])
     return(
         <div>
             {Object.values(posts).map(({title,User,body,id})=>(

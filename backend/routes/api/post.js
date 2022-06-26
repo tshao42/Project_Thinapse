@@ -82,6 +82,7 @@ router.put(
         console.log(`postId at line 81 is ${postId}`)
         const post = await db.Post.findByPk(postId)
         await post.update(req.body);
+        console.log(`updated post is ${post}`);
         const updatedPost = await db.Post.findByPk(postId,{
             include:[{
                 model: db.User,

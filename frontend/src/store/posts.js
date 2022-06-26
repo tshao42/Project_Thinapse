@@ -65,8 +65,8 @@ export const createPost = (payload) => async dispatch =>{
 };
 
 
-export const updatePost = (postId, payload) => async dispatch => {
-    const {authorId, title, body, User} = payload;
+export const updatePost = (postId,payload) => async dispatch => {
+    const { title, body} = payload;
     const response = await csrfFetch(`/api/posts/${postId}`,{
         method: 'PUT',
         headers: { 'Content-Type' : 'application/json' },
@@ -75,7 +75,6 @@ export const updatePost = (postId, payload) => async dispatch => {
     if (response.ok) {
         const post = await response.json()
         dispatch(create(post))
-        return post;
     }
 }
 
