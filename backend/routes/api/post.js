@@ -67,24 +67,24 @@ if (post.authorId !== currentUserId) {
 }
 };
 //UPDATE
+//fixed
 router.put(
     '/:id(\\d+)',
     requireAuth,
-    restoreUser,
+    // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
-        const { user } = req;
-        const currentUser = user.toSafeObject()
-        const ownId = currentUser.id;
+        // const { user } = req;
+        // const currentUser = user.toSafeObject()
+        // const ownId = currentUser.id;
 
         const postId = req.params.id;
+        console.log(`postId at line 81 is ${postId}`)
         const post = await db.Post.findByPk(postId);
-        CheckPermissions(post, ownId)
 
         const id = await post.update(req.body);
-        const updatedPost = await db.Post.findByPk(id);
+        const updatedPost = await db.Post.findByPk(postId);
         return res.json(updatedPost);
-
     })
   );
 
