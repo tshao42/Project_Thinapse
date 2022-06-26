@@ -9,12 +9,6 @@ const loadall = (comments)=>({
     type: LOAD_COMMENTS,
     comments
 })
-
-const update = (comment)=>({
-    type: UPDATE,
-    comment
-});
-
 const create = (comment) => ({
     type: CREATE,
     comment
@@ -27,8 +21,7 @@ const remove = (commentId, postId, userId) => ({
 })
 
 export const getAllComments = (postId) => async dispatch => {
-    const response = await csrfFetch(`/api/posts/${postId}`);
-
+    const response = await csrfFetch(`/api/posts/${postId}/comments`);
     if (response.ok){
         const comments = await response.json();
         dispatch(loadall(comments));
@@ -36,7 +29,7 @@ export const getAllComments = (postId) => async dispatch => {
 }
 
 export const createComment = (postId, payload) => async dispatch =>{
-    const response = await csrfFetch(`/api/posts/${postId}`,{
+    const response = await csrfFetch(`/api/posts/${postId}/comments}`,{
         method: 'POST',
         headers:{ 'Content-Type' : 'application/json' },
         body: JSON.stringify(payload)
@@ -56,7 +49,7 @@ export const updateComment = (commentId, postId, payload) => async dispatch => {
     })
     if (response.ok) {
         const comment = await response.json()
-        dispatch(update(comment))
+        dispatch(create(comment))
         return comment;
     }
 }
@@ -73,25 +66,20 @@ export const deleteComment = (postId,commentId, userId) => async dispatch => {
     }
 }
 
-const initialState = {};
+const initialState = {comments:{}};
 
 const commentsReducer = (state = initialState, action) => {
     switch (action.type) {
       case LOAD_COMMENTS:
-        const newComments = {};
-        action.comments.forEach(comment => {
-          newComments[comment.id] = comment;
-        })
-        return {
-          ...state,
-          ...newComments
-        }
+        const loadedComments = {...state, comments:{...state.posts}};
+        action.comments.forEach(
+            (comment) => (loadedComments.comments[comment.id]=comment));
+        return loadedComments;
       case REMOVE:
         const newState = { ...state };
         delete newState[action.commentId];
         return newState;
       case CREATE:
-      case UPDATE:
         return {
           ...state,
           [action.comment.id]: action.comment

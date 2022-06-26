@@ -10,7 +10,7 @@ module.exports = {
       },
       {
         userId: 4,
-        postId: 2,
+        postId: 1,
         body: "This is dog latin."
       },
       {

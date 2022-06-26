@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deletePost, getAllPosts, loadSinglePost } from '../../store/posts';
 import EditPost from '../EditPost';
+import CommentDisplay from '../CommentDisplay';
 import './Post.css';
 
 
@@ -18,9 +19,7 @@ function SinglePost(){
     const posts = useSelector(state => {
         return state.posts.posts;
     });
-    const post = Object.values(useSelector(state=>state.posts.posts))
 
-    useEffect(()=>{},[]);
     useEffect(() => {
         dispatch(loadSinglePost(postId));
     },[dispatch])
@@ -47,6 +46,7 @@ function SinglePost(){
                     <p>{body}</p>
                     <EditPost post={{title,body,id, User}} User={User} />
                     <button onClick={handleDelete}>Delete it</button>
+                    <CommentDisplay />
                 </div>
             ))}
         </div>

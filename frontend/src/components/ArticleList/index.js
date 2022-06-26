@@ -22,14 +22,14 @@ function ArticleList(){
     return(
         <div>
             {console.log(`Are we getting all posts? ${allPosts}`)}
-            <h1>ThoughtBubbleDivider!</h1>
-            <h2>The posts we are bringing you:</h2>
+            <h4>ThoughtBubbleDivider!</h4>
+            <h3>The posts we are bringing you:</h3>
             <ul>
                 {Object.values(allPosts).map(({id,title,User})=>(
                     <div>
-                        <h2>{id}</h2>
-                        <h3>{User.username}</h3>
-                        <h2>{title}</h2>
+                        <h1>{id}</h1>
+                        <p>{User.username}</p>
+                        <h1>{title}</h1>
                         {console.log('in cycle')}
                     </div>
                 ))}

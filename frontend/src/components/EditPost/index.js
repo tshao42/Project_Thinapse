@@ -18,7 +18,7 @@ function EditPost({post,User}){
 
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch, post])
+    },[dispatch])
 
     const currentUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState(post.title);
