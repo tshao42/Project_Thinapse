@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams, Link } from 'react-router-dom';
-import { getAllPosts, loadSinglePost } from '../../store/posts';
+import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
+import { deletePost, getAllPosts, loadSinglePost } from '../../store/posts';
 import EditPost from '../EditPost';
 import './Post.css';
 
@@ -13,6 +13,7 @@ function SinglePost(){
 
     //use dispatch
     const dispatch = useDispatch();
+    const history = useHistory();
     //get the one post
     const posts = useSelector(state => {
         return state.posts.posts;
@@ -20,6 +21,12 @@ function SinglePost(){
     useEffect(() => {
         dispatch(loadSinglePost(postId));
     },[dispatch, postId, posts])
+
+    const handleDelete = (e)=>{
+        e.preventDefault();
+        dispatch(deletePost(postId));
+        history.push('/');
+    }
     return(
         <div>
             {Object.values(posts).map(({title,User,body,id})=>(
@@ -28,6 +35,7 @@ function SinglePost(){
                     <h2>{title}</h2>
                     <p>{body}</p>
                     <EditPost post={{title,body,id, User}} User={User} />
+                    <button onClick={handleDelete}>Delete it</button>
                 </div>
             ))}
         </div>

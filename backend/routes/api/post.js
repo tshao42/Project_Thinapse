@@ -104,9 +104,10 @@ router.delete(
         //user Id
         //get params id
         const postId = req.params.id;
-        const post = await db.Post.findByPk(postId);
-        const id = await db.Post.destroy(post);
-        return res.json({id});
+        await db.Post.destroy({
+            where: {id: postId},
+        });
+        return res.json(postId);
     }
     )
 )

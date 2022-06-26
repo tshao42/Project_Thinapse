@@ -25,10 +25,9 @@ const create = (post) => ({
     type: CREATE,
     post
 });
-const remove = (postId, userId) => ({
+const remove = (postId) => ({
     type: REMOVE,
-    postId,
-    userId
+    postId
 })
 
 //okay
@@ -78,14 +77,14 @@ export const updatePost = (postId,payload) => async dispatch => {
     }
 }
 
-export const deletePost = (postId, userId) => async dispatch => {
+export const deletePost = (postId) => async dispatch => {
     const response = await csrfFetch(`/api/posts/${postId}`, {
         method: 'DELETE',
     })
 
     if(response.ok) {
-        const { id: deletedPostId } = await response.json();
-        dispatch(remove(deletedPostId, postId, userId));
+        const deletedPostId = await response.json();
+        dispatch(remove(deletedPostId));
         return;
     }
 }

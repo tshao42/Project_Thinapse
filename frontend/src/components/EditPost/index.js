@@ -68,7 +68,7 @@ function EditPost({post,User}){
                     required
                     value = {body}
                 onChange = {e=>setBody(e.target.value)}/>
-                <button type="submit">Submit</button>
+                <button type="submit">Fix it!</button>
             </form>
         </div>
     )
