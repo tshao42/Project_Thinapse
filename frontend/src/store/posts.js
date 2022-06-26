@@ -66,20 +66,21 @@ export const createPost = (payload) => async dispatch =>{
 
 
 export const updatePost = (postId, payload) => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}`,{
+    const {authorId, title, body, User} = payload;
+    const response = await csrfFetch(`/api/posts/${postId}`,{
         method: 'PUT',
         headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({title, body})
     })
     if (response.ok) {
         const post = await response.json()
-        dispatch(update(post))
+        dispatch(create(post))
         return post;
     }
 }
 
 export const deletePost = (postId, userId) => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await csrfFetch(`/api/posts/${postId}`, {
         method: 'DELETE',
     })
 
@@ -115,11 +116,11 @@ const postsReducer = (state = initialState, action) => {
             ...state,
             [action.post.id]: action.post
           };
-      case UPDATE:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        };
+    //   case UPDATE:
+    //     return {
+    //         ...state,
+    //         [action.post.id]: action.post
+    //     };
       default:
         return state;
     }

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
 import SinglePost from "./components/Post";
 import WriteNew from "./components/WriteNew";
+import EditPost from "./components/EditPost";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,12 +31,15 @@ function App() {
           <Route exact path="/">
             <ArticleList />
           </Route>
-          <Route path ="/posts/:postId">
+          <Route exact path ="/posts/:postId">
             <SinglePost />
           </Route>
           <Route path ="/write">
             <WriteNew />
           </Route>
+          {/* <Route path={`/posts/:postId/edit`}>
+            <EditPost />
+          </Route> */}
         </Switch>
       )}
     </>

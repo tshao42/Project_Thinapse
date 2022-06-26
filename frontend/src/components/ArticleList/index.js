@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { getAllPosts } from '../../store/posts';
 import './ArticleList.css';
 
@@ -26,8 +26,10 @@ function ArticleList(){
                         <h2>{id}</h2>
                         <h3>{User.username}</h3>
                         <h2>{title}</h2>
+                        {console.log('in cycle')}
                     </div>
                 ))}
+                {console.log('out of cycle')}
             </ul>
         </div>
     );

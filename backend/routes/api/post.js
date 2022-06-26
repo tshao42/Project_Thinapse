@@ -59,19 +59,19 @@ router.post(
 );
 
 //error handling
-const CheckPermissions = (post, currentUserId)=>{
-if (post.authorId !== currentUserId) {
-    const err = new Error('Illegal operation.');
-    err.status = 403; // Forbidden
-    throw err;
-}
-};
+// const CheckPermissions = (post, currentUserId)=>{
+// if (post.authorId !== currentUserId) {
+//     const err = new Error('Illegal operation.');
+//     err.status = 403; // Forbidden
+//     throw err;
+// }
+// };
 //UPDATE
 //fixed
 router.put(
     '/:id(\\d+)',
     requireAuth,
-    // restoreUser,
+    restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
         // const { user } = req;
@@ -80,10 +80,14 @@ router.put(
 
         const postId = req.params.id;
         console.log(`postId at line 81 is ${postId}`)
-        const post = await db.Post.findByPk(postId);
-
-        const id = await post.update(req.body);
-        const updatedPost = await db.Post.findByPk(postId);
+        const post = await db.Post.findByPk(postId)
+        await post.update(req.body);
+        const updatedPost = await db.Post.findByPk(postId,{
+            include:[{
+                model: db.User,
+                required:false
+            }]
+        });
         return res.json(updatedPost);
     })
   );
@@ -97,13 +101,9 @@ router.delete(
     restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
-        const { user } = req;
-        const currentUser = user.toSafeObject()
-        const ownId = currentUser.id;
-
+        //get params id
         const postId = req.params.id;
         const post = await db.Post.findByPk(postId);
-        CheckPermissions(post, ownId)
         const id = await db.Post.destroy(post);
         return res.json({id});
     }
@@ -111,7 +111,7 @@ router.delete(
 )
 
 
-//=======comments
+//=======comments===================
 
 
 //READ
@@ -187,8 +187,6 @@ router.delete(
     }
     )
 )
-
-
 
 
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, Link } from 'react-router-dom';
 import { getAllPosts, loadSinglePost } from '../../store/posts';
+import EditPost from '../EditPost';
 import './Post.css';
 
 
@@ -21,11 +22,12 @@ function SinglePost(){
     },[dispatch, postId])
     return(
         <div>
-            {Object.values(posts).map(({title,User,body})=>(
+            {Object.values(posts).map(({title,User,body,id})=>(
                 <div>
                     <h3>{User.username}</h3>
                     <h2>{title}</h2>
                     <p>{body}</p>
+                    <EditPost post={{title,body,id, User}} User={User} />
                 </div>
             ))}
         </div>

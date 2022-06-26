@@ -25,8 +25,8 @@ function WriteNew(){
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const updateTitle = (e) => setTitle(e.target.value);
-    const updateBody = (e) => setBody(e.target.value);
+    // const updateTitle = (e) => setTitle(e.target.value);
+    // const updateBody = (e) => setBody(e.target.value);
 
     //First set the state; retrieve all
     const currentUser = useSelector((state) => state.session.user);
