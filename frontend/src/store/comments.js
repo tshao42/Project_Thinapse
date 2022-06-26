@@ -5,9 +5,10 @@ export const REMOVE = "comments/REMOVE";
 export const CREATE = "comments/CREATE";
 export const UPDATE = "comments/LOAD";
 
-const loadall = (comments)=>({
+const loadall = (comments, postId)=>({
     type: LOAD_COMMENTS,
-    comments
+    comments,
+    postId
 })
 const create = (comment) => ({
     type: CREATE,
@@ -21,18 +22,19 @@ const remove = (commentId, postId, userId) => ({
 })
 
 export const getAllComments = (postId) => async dispatch => {
-    const response = await csrfFetch(`/api/posts/${postId}/comments`);
+    const response = await csrfFetch(`/api/comments/forpost/${postId}`);
     if (response.ok){
         const comments = await response.json();
-        dispatch(loadall(comments));
+        dispatch(loadall(comments, postId));
     }
 }
 
 export const createComment = (postId, payload) => async dispatch =>{
-    const response = await csrfFetch(`/api/posts/${postId}/comments}`,{
+    console.log(`currently hitting the route /api/posts/${postId}/comments}`)
+    const response = await csrfFetch(`/api/comments`,{
         method: 'POST',
         headers:{ 'Content-Type' : 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(postId,payload)
     })
     if (response.ok) {
         const comment = await response.json()
@@ -77,7 +79,7 @@ const commentsReducer = (state = initialState, action) => {
         return loadedComments;
       case REMOVE:
         const newState = { ...state };
-        delete newState[action.commentId];
+        delete newState[action.comment.id];
         return newState;
       case CREATE:
         return {

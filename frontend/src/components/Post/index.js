@@ -5,6 +5,7 @@ import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deletePost, getAllPosts, loadSinglePost } from '../../store/posts';
 import EditPost from '../EditPost';
 import CommentDisplay from '../CommentDisplay';
+import WriteComment from '../WriteComment'
 import './Post.css';
 
 
@@ -47,6 +48,7 @@ function SinglePost(){
                     <EditPost post={{title,body,id, User}} User={User} />
                     <button onClick={handleDelete}>Delete it</button>
                     <CommentDisplay />
+                    <WriteComment />
                 </div>
             ))}
         </div>
