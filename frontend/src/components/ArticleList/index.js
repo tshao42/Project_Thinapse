@@ -12,6 +12,10 @@ function ArticleList(){
     const allPosts = useSelector(state => {
         return state.posts.posts;
     });
+
+    const posts = Object.values(useSelector(state=>state.posts.posts))
+
+    useEffect(()=>{},[]);
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])

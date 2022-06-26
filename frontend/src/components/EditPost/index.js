@@ -14,12 +14,11 @@ function EditPost({post,User}){
 
     //use dispatch
     const dispatch = useDispatch();
-
-    //declare a post arra
-    Object.values({post})
+    const history = useHistory();
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch, postId])
+    },[dispatch, post])
+
     const currentUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState(post.title);
     const [body, setBody] = useState(post.body);
@@ -49,6 +48,7 @@ function EditPost({post,User}){
         setErrors([]);
         console.log(`handleSubmit here ${payload}`)
         dispatch(updatePost(postId,payload));
+        history.push(`/posts/${postId}`)
     }
 
 //need cancel click

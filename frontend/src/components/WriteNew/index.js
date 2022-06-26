@@ -41,20 +41,29 @@ function WriteNew(){
     //ERROR HANDLING?
     //but since they're required, wondering if it's necessary
 
-    const handleSubmit =(e)=> {
-        e.preventDefault();
-        //payload
-        const payload = {
-            authorId: currentUser.id,
-            title,
-            body,
-            User: currentUser
+    const handleSubmit =async(e)=> {
+            e.preventDefault();
+            //payload
+            const payload = {
+                authorId: currentUser.id,
+                title,
+                body,
+                User: currentUser
+            }
+            setErrors([]);
+            console.log(`handleSubmit here ${payload}`);
+        let newPost;
+        try{
+            newPost = dispatch(postActions.createPost(payload));
+        } catch(error){
+//error handling
+        } finally{
+        if (newPost) {
+            history.push(`/`)
         }
-        setErrors([]);
-        console.log(`handleSubmit here ${payload}`)
-        dispatch(postActions.createPost(payload))
-        history.push(`/`)
     }
+    };
+
 
 //need cancel click
 

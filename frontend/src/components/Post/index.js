@@ -18,14 +18,25 @@ function SinglePost(){
     const posts = useSelector(state => {
         return state.posts.posts;
     });
+    const post = Object.values(useSelector(state=>state.posts.posts))
+
+    useEffect(()=>{},[]);
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch, postId, posts])
+    },[dispatch])
 
-    const handleDelete = (e)=>{
+    const handleDelete = async (e)=>{
         e.preventDefault();
-        dispatch(deletePost(postId));
-        history.push('/');
+        let deleted;
+        try{
+        deleted= dispatch(deletePost(postId));
+        } catch (error){
+            //handle errors
+        } finally{
+        if (deleted){
+            history.push(`/`);
+        }
+    }
     }
     return(
         <div>
