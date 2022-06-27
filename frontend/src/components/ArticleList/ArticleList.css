@@ -1,0 +1,7 @@
+.frontPage{
+    display: flex;
+    height:480px;
+    justify-content: space-between;
+    background-color: #FFD100;
+    border-bottom: 1px solid white;
+}

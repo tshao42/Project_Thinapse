@@ -1,0 +1,26 @@
+.navBar{
+    padding-left: 75px;
+    padding-right: 75px;
+    display: flex;
+    height:70px;
+    justify-content: space-between;
+    background-color: #FFD100;
+}
+
+
+#logo{
+    height:25px;
+}
+#bp{
+    width: 60%
+}
+
+.nav-Link-right{
+    display: flex;
+    flex-wrap:nowrap;
+    gap:30px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 25px;
+    text-decoration: none;
+    padding-right:20px;
+}

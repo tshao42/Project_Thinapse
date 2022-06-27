@@ -22,13 +22,19 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        <NavLink to="/write">Write Now</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div>
+      <div className="navBar">
+        <ul>
+            <a href="/">
+              <img src="https://i.imgur.com/7QQ5G0J.png"  id="logo" alt="logo" />
+            </a>
+            <div class="NavItems">
+            <NavLink to="/write" className="nav-Link-right"> Think now...</NavLink>
+            </div>
+            {isLoaded && sessionLinks}
+        </ul>
+      </div>
+    </div>
   );
 }
 

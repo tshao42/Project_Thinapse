@@ -23,6 +23,9 @@ function ArticleList(){
         <div>
             {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <h4>ThoughtBubbleDivider!</h4>
+            <div className="frontPage">
+
+            </div>
             <h3>The posts we are bringing you:</h3>
             <ul>
                 {Object.values(allPosts).map(({id,title,User})=>(
