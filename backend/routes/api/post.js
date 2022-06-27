@@ -70,8 +70,8 @@ router.post(
 //fixed
 router.put(
     '/:id(\\d+)',
-    requireAuth,
-    restoreUser,
+    // requireAuth,
+    // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
         // const { user } = req;
@@ -98,8 +98,8 @@ router.put(
 
 router.delete(
     '/:id(\\d+)',
-    requireAuth,
-    restoreUser,
+    // requireAuth,
+    // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
         //get params id

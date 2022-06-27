@@ -33,11 +33,15 @@ function CommentDisplay(){
                     <div>
                         <h0>{User.username}</h0>
                         <p>{body}</p>
-                        {console.log('in cycle')}
+                        <p>{id}</p>
+                        {/* {console.log('in cycle')}
+                        {console.log(`${id} no bracket`)}
+                        {console.log((`${{id}} with bracket`))} */}
                         <button onClick={
                             async(e)=>{
                                 e.preventDefault();
-                                await dispatch(deleteComment(id)).then(()=>dispatch.getAllComments(postId));
+                                console.log(`deleting at location... ${id}`)
+                                await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
                             }
                         }>Delete it</button>
                     </div>

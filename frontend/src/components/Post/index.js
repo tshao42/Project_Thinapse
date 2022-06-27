@@ -28,9 +28,8 @@ function SinglePost(){
 
     const handleDelete = async (e)=>{
         e.preventDefault();
-        await dispatch(deletePost(postId)).then(()=>dispatch(loadSinglePost(postId))).then(()=>history.push(`/`));
-
-
+        await dispatch(deletePost(postId)).then(()=>dispatch(getAllPosts()));
+        history.push(`/`);
     }
     return(
         <div>
@@ -42,7 +41,7 @@ function SinglePost(){
                     <EditPost post={{title,body,id, User}} User={User} />
                     <button onClick={handleDelete}>Delete it</button>
                     <CommentDisplay />
-                    <WriteComment />
+                    <WriteComment postId={postId} />
                 </div>
             ))}
         </div>

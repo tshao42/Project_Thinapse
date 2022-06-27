@@ -58,8 +58,8 @@ router.post('/',asyncHandler(
 //OPTIONAL
 router.put(
     '/:id(\\d+)/comments/:commentId(\\d+)',
-    requireAuth,
-    restoreUser,
+    // requireAuth,
+    // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
         const { user } = req;

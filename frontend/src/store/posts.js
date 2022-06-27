@@ -102,7 +102,7 @@ const postsReducer = (state = initialState, action) => {
         return loadedPosts;
       case REMOVE:
         const newState = { ...state };
-        delete newState[action.postId];
+        delete newState.posts[action.postId];
         return newState;
       case LOAD:
         const singleLoad = {...state, posts:{...state.posts}};

@@ -14,11 +14,9 @@ const create = (comment) => ({
     type: CREATE,
     comment
 });
-const remove = (commentId, postId, userId) => ({
+const remove = (commentId) => ({
     type: REMOVE,
-    commentId,
-    postId,
-    userId
+    commentId
 })
 
 export const getAllComments = (postId) => async dispatch => {
@@ -64,7 +62,7 @@ export const deleteComment = (commentId) => async dispatch => {
     })
 
     if(response.ok) {
-        const { id: deletedCommentId } = await response.json();
+        const  deletedCommentId = await response.json();
         dispatch(remove(deletedCommentId));
         return deletedCommentId;
     }
@@ -81,12 +79,10 @@ const commentsReducer = (state = initialState, action) => {
         return loadedComments;
       case REMOVE:
         const newState = { ...state };
-        delete newState[action.comment.id];
+        delete newState.comments[action.commentId];
         return newState;
-        case CREATE:
-            let baseState = {...state};
-            baseState.comments[action.comment.id]= action.comment;
-            return baseState;
+      case CREATE:
+        return {...state, [action.comment.id]: action.comment};
       default:
         return state;
     }
