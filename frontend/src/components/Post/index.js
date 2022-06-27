@@ -20,15 +20,25 @@ function SinglePost(){
     const posts = useSelector(state => {
         return state.posts.posts;
     });
+    //hydrate
+    useEffect(() => {
+        dispatch(getAllPosts());
+    },[dispatch])
+
+
+    //no need?
+    // //for the loading post
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch]);
+    },[dispatch, postId]);
+
+    //destruct the state
+    //already referring here
     const {title, body, id, User} = posts[postId];
 
     const handleDelete = async (e)=>{
         e.preventDefault();
-        await dispatch(deletePost(postId)).then(()=>dispatch(getAllPosts()));
-        history.push(`/`);
+        await dispatch(deletePost(postId)).then(()=>history.push(`/`));
     }
     return(
         <div>
@@ -38,7 +48,7 @@ function SinglePost(){
                     <h2>{title}</h2>
                     <p>{body}</p>
                     <EditPost post={{title,body,id, User}} User={User} />
-                    <button onClick={handleDelete}>Delete it</button> */}
+                    <button onClick={handleDelete}>Delete it</button>
                     <CommentDisplay />
                     <WriteComment postId={postId} />
                 </div>

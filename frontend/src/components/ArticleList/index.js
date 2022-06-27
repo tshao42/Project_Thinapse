@@ -28,9 +28,10 @@ function ArticleList(){
             <ul>
                 {Object.values(allPosts).map(({id,title,User})=>(
                     <div>
-                        <h1>{id}</h1>
+                        <p>Post Id: {id}</p>
                         <p>{User.username}</p>
-                        <NavLink to={`/posts/${id}`}>{title}</NavLink>
+                        <p>{title}</p>
+                        <NavLink to={`/posts/${id}`}>Read more...</NavLink>
                         {/* {console.log('in cycle')} */}
                     </div>
                 ))}
