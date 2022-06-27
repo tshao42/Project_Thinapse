@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deletePost, getAllPosts, loadSinglePost } from '../../store/posts';
@@ -16,25 +16,26 @@ function SinglePost(){
     //use dispatch
     const dispatch = useDispatch();
     const history = useHistory();
+
     //get the one post
-    const posts = useSelector(state => {
+    const post = useSelector(state => {
         return state.posts.posts;
     });
-    //hydrate
-    useEffect(() => {
-        dispatch(getAllPosts());
-    },[dispatch])
-
-
-    //no need?
-    // //for the loading post
-    useEffect(() => {
+    const [loaded, setLoaded] = useState(false);
+    const {title, body, id, User} = post;
+    useEffect(()=>{
         dispatch(loadSinglePost(postId));
-    },[dispatch, postId]);
+        if (post){
+            setLoaded(true);
+        }
+    }, [dispatch]);
+    //hydrate
+
+    useEffect(()=>{
+    }, [loaded])
 
     //destruct the state
     //already referring here
-    const {title, body, id, User} = posts[postId];
 
     const handleDelete = async (e)=>{
         e.preventDefault();
@@ -42,6 +43,7 @@ function SinglePost(){
     }
     return(
         <div>
+            {loaded &&
                 <div>
                     <h1>SinglePost {id}</h1>
                     <h3>{User.username}</h3>
@@ -52,6 +54,7 @@ function SinglePost(){
                     <CommentDisplay />
                     <WriteComment postId={postId} />
                 </div>
+            }
         </div>
     );
 }

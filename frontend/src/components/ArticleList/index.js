@@ -14,7 +14,6 @@ function ArticleList(){
         return state.posts.posts;
     });
 
-    const posts = Object.values(useSelector(state=>state.posts.posts))
 
     useEffect(()=>{},[]);
     useEffect(() => {
