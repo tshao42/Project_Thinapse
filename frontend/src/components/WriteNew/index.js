@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, Redirect } from 'react-router-dom';
-import * as postActions from '../../store/posts';
+import { getAllPosts, createPost } from '../../store/posts';
 import './WriteNew.css';
 
 
@@ -23,7 +23,6 @@ function WriteNew(){
 
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [errors, setErrors] = useState([]);
 
     // const updateTitle = (e) => setTitle(e.target.value);
     // const updateBody = (e) => setBody(e.target.value);
@@ -32,7 +31,7 @@ function WriteNew(){
     const currentUser = useSelector((state) => state.session.user);
 
     useEffect(()=>{
-        dispatch(postActions.getAllPosts());
+        dispatch(getAllPosts());
     }, [dispatch]);
 
     // if (!currentUSer) return <Redirect to="/login" />;
@@ -43,25 +42,15 @@ function WriteNew(){
 
     const handleSubmit =async(e)=> {
             e.preventDefault();
-            //payload
             const payload = {
                 authorId: currentUser.id,
                 title,
                 body,
                 User: currentUser
             }
-            setErrors([]);
             console.log(`handleSubmit here ${payload}`);
-        let newPost;
-        try{
-            newPost = dispatch(postActions.createPost(payload));
-        } catch(error){
-//error handling
-        } finally{
-        if (newPost) {
+            await dispatch(createPost(payload)).then(()=>dispatch(getAllPosts()));
             history.push(`/`)
-        }
-    }
     };
 
 
