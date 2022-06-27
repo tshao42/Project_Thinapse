@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/">
             <ArticleList />
           </Route>
-          <Route exact path ="/posts/:postId">
+          <Route path ="/posts/:postId">
             <SinglePost />
           </Route>
           <Route path ="/write">

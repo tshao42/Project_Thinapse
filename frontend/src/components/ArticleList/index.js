@@ -1,13 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Redirect, useHistory } from 'react-router-dom';
 import { getAllPosts } from '../../store/posts';
 import './ArticleList.css';
 
 
 function ArticleList(){
     const dispatch = useDispatch();
+    const history = useHistory();
     //getting all post
     const allPosts = useSelector(state => {
         return state.posts.posts;
@@ -29,11 +30,11 @@ function ArticleList(){
                     <div>
                         <h1>{id}</h1>
                         <p>{User.username}</p>
-                        <h1>{title}</h1>
-                        {console.log('in cycle')}
+                        <NavLink to={`/posts/${id}`}>{title}</NavLink>
+                        {/* {console.log('in cycle')} */}
                     </div>
                 ))}
-                {console.log('out of cycle')}
+                {/* {console.log('out of cycle')} */}
             </ul>
         </div>
     );

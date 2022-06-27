@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deletePost, getAllPosts, loadSinglePost } from '../../store/posts';
 import EditPost from '../EditPost';
@@ -20,11 +20,10 @@ function SinglePost(){
     const posts = useSelector(state => {
         return state.posts.posts;
     });
-
-
     useEffect(() => {
         dispatch(loadSinglePost(postId));
     },[dispatch]);
+    const {title, body, id, User} = posts[postId];
 
     const handleDelete = async (e)=>{
         e.preventDefault();
@@ -33,17 +32,16 @@ function SinglePost(){
     }
     return(
         <div>
-            {Object.values(posts).map(({title,User,body,id})=>(
                 <div>
+                    <h1>SinglePost {id}</h1>
                     <h3>{User.username}</h3>
                     <h2>{title}</h2>
                     <p>{body}</p>
                     <EditPost post={{title,body,id, User}} User={User} />
-                    <button onClick={handleDelete}>Delete it</button>
+                    <button onClick={handleDelete}>Delete it</button> */}
                     <CommentDisplay />
                     <WriteComment postId={postId} />
                 </div>
-            ))}
         </div>
     );
 }
