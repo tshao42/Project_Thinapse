@@ -48,7 +48,7 @@ function WriteNew(){
                 body,
                 User: currentUser
             }
-            console.log(`handleSubmit here ${payload}`);
+            // console.log(`handleSubmit here ${payload}`);
             await dispatch(createPost(payload)).then(()=>dispatch(getAllPosts()));
             history.push(`/`)
     };

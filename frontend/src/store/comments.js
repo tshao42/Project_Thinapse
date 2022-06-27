@@ -28,9 +28,9 @@ export const getAllComments = (postId) => async dispatch => {
 }
 
 export const createComment = (payload) => async dispatch =>{
-    console.log(`currently hitting the route /api/comments`)
+    // console.log(`currently hitting the route /api/comments`)
     const {userId, postId, body} = payload;
-    console.log(`the Payload is: ${userId} ${postId} ${body}`);
+    // console.log(`the Payload is: ${userId} ${postId} ${body}`);
     const response = await csrfFetch(`/api/comments`,{
         method: 'POST',
         headers:{

@@ -7,7 +7,7 @@ import './CommentDisplay.css';
 
 function CommentDisplay(){
     const {postId} = useParams();
-    console.log(`this is the postId: ${postId}`)
+    // console.log(`this is the postId: ${postId}`)
     const allComments = useSelector(state => {
         return state.comments.comments;
     });

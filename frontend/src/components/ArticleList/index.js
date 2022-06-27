@@ -22,7 +22,7 @@ function ArticleList(){
     },[dispatch])
     return(
         <div>
-            {console.log(`Are we getting all posts? ${allPosts}`)}
+            {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <h4>ThoughtBubbleDivider!</h4>
             <h3>The posts we are bringing you:</h3>
             <ul>
