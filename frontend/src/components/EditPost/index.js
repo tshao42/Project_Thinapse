@@ -16,10 +16,6 @@ function EditPost({post,User}){
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(() => {
-        dispatch(loadSinglePost(postId));
-    },[dispatch])
-
     const currentUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState(post.title);
     const [body, setBody] = useState(post.body);
@@ -36,8 +32,7 @@ function EditPost({post,User}){
     //NEED TO IMPLEMENT
     //ERROR HANDLING?
     //but since they're required, wondering if it's necessary
-
-    const handleSubmit =(e)=> {
+    const handleSubmit =async(e)=> {
         e.preventDefault();
         //payload
         const payload = {
@@ -48,8 +43,8 @@ function EditPost({post,User}){
         }
         setErrors([]);
         console.log(`handleSubmit here ${payload}`)
-        dispatch(updatePost(postId,payload));
-        history.push(`/posts/${postId}`)
+        await dispatch(updatePost(postId,payload)).then(()=>dispatch(loadSinglePost(postId)));
+                //waiting for it to completely complete before doing anything
     }
 
 //need cancel click

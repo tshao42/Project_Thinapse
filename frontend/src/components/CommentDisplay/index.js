@@ -18,15 +18,11 @@ function CommentDisplay(){
 
 
 
-    const [commentId, setCommentId] = useState(-1)
+    // const [commentId, setCommentId] = useState(-1)
     // const handleDelete = async(e)=>{
     //     e.preventDefault();
-    //     let deleted;
-    //     try{
-    //     deleted= dispatch(deleteComment(commentId));
-    //     } catch (error){
-    //         //handle errors
-    //     }
+
+    //     await dispatch(deleteComment(commentId).then(()=>dispatch.getAllComments(postId)));
     // };
 
 
@@ -38,7 +34,12 @@ function CommentDisplay(){
                         <h0>{User.username}</h0>
                         <p>{body}</p>
                         {console.log('in cycle')}
-                        <button onClick={()=>dispatch(deleteComment(id))}>Delete it</button>
+                        <button onClick={
+                            async(e)=>{
+                                e.preventDefault();
+                                await dispatch(deleteComment(id)).then(()=>dispatch.getAllComments(postId));
+                            }
+                        }>Delete it</button>
                     </div>
                 ))}
         </div>

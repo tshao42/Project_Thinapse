@@ -21,22 +21,16 @@ function SinglePost(){
         return state.posts.posts;
     });
 
+
     useEffect(() => {
         dispatch(loadSinglePost(postId));
-    },[dispatch])
+    },[dispatch]);
 
     const handleDelete = async (e)=>{
         e.preventDefault();
-        let deleted;
-        try{
-        deleted= dispatch(deletePost(postId));
-        } catch (error){
-            //handle errors
-        } finally{
-        if (deleted){
-            history.push(`/`);
-        }
-    }
+        await dispatch(deletePost(postId)).then(()=>dispatch(loadSinglePost(postId))).then(()=>history.push(`/`));
+
+
     }
     return(
         <div>

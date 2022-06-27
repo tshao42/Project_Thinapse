@@ -8,12 +8,11 @@ import { getAllComments } from '../../store/comments';
 
 
 
-function WriteComment(){
-    const {postId} = useParams();
+function WriteComment({postId}){
     const dispatch = useDispatch();
     const [body, setBody] = useState("");
     const currentUser = useSelector((state) => state.session.user);
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         //payload
         const payload = {
@@ -22,7 +21,7 @@ function WriteComment(){
             body
         }
         console.log(`handleSubmit here ${payload}`);
-            dispatch(createComment(payload));
+        await dispatch(createComment(payload)).then(()=>getAllComments(postId));
 //error handling
     }
 

@@ -73,7 +73,7 @@ export const updatePost = (postId,payload) => async dispatch => {
     })
     if (response.ok) {
         const post = await response.json()
-        dispatch(create(post))
+        dispatch(update(post))
     }
 }
 
@@ -110,10 +110,11 @@ const postsReducer = (state = initialState, action) => {
         singleLoad.posts[postId] = action.post;
         return singleLoad;
       case CREATE:
-        return {
-            ...state,
-            [action.post.id]: action.post
-          };
+        return {...state, [action.post.id]: action.post};
+      case UPDATE:
+        let baseState = {...state};
+        baseState.posts[action.post.id]= action.post;
+        return baseState;
       default:
         return state;
     }
