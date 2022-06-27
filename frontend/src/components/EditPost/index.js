@@ -7,7 +7,7 @@ import './EditPost.css';
 
 
 
-function EditPost({post,User}){
+function EditPost({post}){
 
     //setState
     const { postId } = useParams();
@@ -19,6 +19,7 @@ function EditPost({post,User}){
     const currentUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState(post.title);
     const [body, setBody] = useState(post.body);
+    const [User, setUser] = useState(post.User);
     const [errors, setErrors] = useState([]);
 
     // const updateTitle = (e) => setTitle(e.target.value);

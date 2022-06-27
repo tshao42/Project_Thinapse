@@ -22,21 +22,20 @@ function SinglePost(){
         return state.posts.posts;
     });
     const [loaded, setLoaded] = useState(false);
-    const {title, body, id, User} = post;
-    useEffect(()=>{
-        dispatch(loadSinglePost(postId));
-        if (post){
-            setLoaded(true);
-        }
-    }, [dispatch]);
-    //hydrate
+    // const {title, body, id, User} = post;
 
     useEffect(()=>{
-    }, [loaded])
+        dispatch(getAllPosts());
+        hydrating();
+    }, [dispatch]);
+    //hydrate
 
     //destruct the state
     //already referring here
 
+    const hydrating = async ()=>{
+        await dispatch(loadSinglePost(postId)).then(()=>setLoaded(true));
+    }
     const handleDelete = async (e)=>{
         e.preventDefault();
         await dispatch(deletePost(postId)).then(()=>history.push(`/`));
@@ -45,11 +44,11 @@ function SinglePost(){
         <div>
             {loaded &&
                 <div>
-                    <h1>SinglePost {id}</h1>
-                    <h3>{User.username}</h3>
-                    <h2>{title}</h2>
-                    <p>{body}</p>
-                    <EditPost post={{title,body,id, User}} User={User} />
+                    <h1>SinglePost {post[postId].User.username}</h1>
+                    <h3>{post[postId].User.username}</h3>
+                    <h2>{post[postId].title}</h2>
+                    <p>{post[postId].body}</p>
+                    <EditPost post= {post[postId]} />
                     <button onClick={handleDelete}>Delete it</button>
                     <CommentDisplay />
                     <WriteComment postId={postId} />
