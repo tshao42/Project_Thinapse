@@ -1,0 +1,33 @@
+#writeNewForm{
+    display:flex;
+    flex-direction: vertical-align;
+    width:80%;
+    margin: left 10% right 10%;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+#writePageTitle{
+    font-family:voguing;
+
+}
+
+#newPostTitle{
+    width: 100%;
+    height:20%;
+}
+#newPost{
+    width: 100%;
+    height: 80%;
+}
+
+
+/* #writeNewSubmit{
+    border:none;
+    background-color: #0077B6;
+    width: 60%;
+    height: 10%;
+    font-family:'voguing';
+    font-size: 60pt;
+    border-radius: 5%;
+} */

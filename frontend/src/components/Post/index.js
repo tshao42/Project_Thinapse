@@ -84,12 +84,13 @@ function SinglePost(){
                     <h1>SinglePost {post[postId].User.username}</h1>
                     <h3>{post[postId].User.username}</h3>
                     <h2>{post[postId].title}</h2>
-                    <p>{post[postId].body}</p>
+                    <p className="textBody">{post[postId].body}</p>
                     {!currentUser 
                     ? <></>
                     : <>{currentUser.id===post[postId].authorId ?
                         <div className='editOptions'>
-                            <EditPost post= {post[postId]} />
+                            {/*want wo make it a side bar??*/}
+                            <EditPost post= {post[postId]} />       
                             <button onClick={handleDelete}>Delete it</button>
                         </div>
                         :<></>

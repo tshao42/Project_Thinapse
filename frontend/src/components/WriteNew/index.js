@@ -60,20 +60,23 @@ function WriteNew(){
 
     //TODO: when not logged in, instead render a message showing not allowed to
     return(
-        <div>
-            <h1>Creating your thought bubble...</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="string"
+        <div class='pageContainer'>
+            <h1 id='writePageTitle'>Creating your thought bubble...</h1>
+            <br/>
+            <form onSubmit={handleSubmit} id='writeNewForm'>
+                <textarea type="string"
                     placeholder="Give your masterpiece a title..."
                     required
+                    id='newPostTitle'
                     value = {title}
                     onChange = {e=>setTitle(e.target.value)}/>
-                <input type="text"
+                <textarea type="text"
                     placeholder="write your thoughts here"
                     required
+                    id = 'newPostBody'
                     value = {body}
-                onChange = {e=>setBody(e.target.value)}/>
-                <button type="submit">Submit</button>
+                    onChange = {e=>setBody(e.target.value)}/>
+                <button type="submit" id='writeNewSubmit'>Submit</button>
             </form>
 
         </div>

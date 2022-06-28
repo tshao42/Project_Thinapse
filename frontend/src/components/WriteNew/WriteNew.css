@@ -1,0 +1,55 @@
+.pageContainer{
+    padding-left:20%;
+    padding-right:20%;
+    width: 80%;
+    /* display:flex;
+    flex-direction: vertical-align;
+    flex-wrap: wrap; */
+    align-items: center;
+    height:100%;
+}
+
+#writeNewForm{
+    gap: 10px;
+
+}
+#writePageTitle{
+    font-family:'voguing';
+    height: 10px;
+
+}
+
+#newPostTitle{
+    width: 100%;
+    height: 10em;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+}
+#newPostBody{
+    width: 100%;
+    height: 30em;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+  
+}
+
+
+#writeNewSubmit{
+    border:none;
+    background-color: #0077B6;
+    width: 60%;
+    height: 10%;
+    font-family:'voguing';
+    font-size: 40pt;
+    border-radius: 5%;
+    color:#CAF0F8;
+    position:center;
+}
