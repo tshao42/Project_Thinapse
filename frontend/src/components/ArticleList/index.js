@@ -25,6 +25,7 @@ function ArticleList(){
             {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <div className="frontPage">
                 <div id="slogan">Think. React.<br />Now.
+                    <p><br></br></p>
                     <div id="sub-Slogan">Catalyze the next thoughts chain reaction...</div>
                 </div>
                 <img src="https://i.imgur.com/FCj4MH1.png" id="frontPagePic" alt="node" />

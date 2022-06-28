@@ -67,7 +67,7 @@ function EditPost({post}){
                     id='editBody'
                     value = {body}
                 onChange = {e=>setBody(e.target.value)}/>
-                <button type="submit" id='editButtonSubmit'>Fix it!</button>
+                <button type="submit" id='smallEditButtons'>Fix it!</button>
             </form>
         </div>
     )
