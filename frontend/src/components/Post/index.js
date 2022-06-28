@@ -8,6 +8,7 @@ import CommentDisplay from '../CommentDisplay';
 import WriteComment from '../WriteComment'
 import restoreUser from '../../store/session'
 import './Post.css';
+import NotFound from '../NotFound';
 
 
 function SinglePost(){
@@ -94,6 +95,9 @@ function SinglePost(){
                         <WriteComment postId={postId} />
                     }
                 </div>
+            }
+            {!loaded &&
+            <NotFound />
             }
         </div>
     );

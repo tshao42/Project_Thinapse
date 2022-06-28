@@ -64,3 +64,17 @@
     cursor: pointer;
     background-color: #03045E;
 }
+
+.generalLink{
+    font-family:'voguing';
+    color: #03045E;
+    font-size: 17px;
+    padding-left: 58%;
+    text-align:center;
+    padding-top: 20px;
+}
+
+.generalLink:link{
+    text-decoration: none;
+    cursor:pointer;
+}

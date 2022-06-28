@@ -57,28 +57,38 @@ function WriteNew(){
 //need cancel click
 
 
+const notFoundStyle={textDecoration: 'none',color:'black', fontFamily:'forma-djr-text'};
 
     //TODO: when not logged in, instead render a message showing not allowed to
     return(
         <div className='pageContainer'>
-            <h1 id='writePageTitle'>Creating your thought bubble...</h1>
-            <br/>
-            <form onSubmit={handleSubmit} id='writeNewForm'>
-                <textarea type="string"
-                    placeholder="Give your post a name..."
-                    required
-                    id='newPostTitle'
-                    value = {title}
-                    onChange = {e=>setTitle(e.target.value)}/>
-                <textarea type="text"
-                    placeholder="What are you thinking?"
-                    required
-                    id = 'newPostBody'
-                    value = {body}
-                    onChange = {e=>setBody(e.target.value)}/>
-                <button type="submit" id='writeNewSubmit'>Submit</button>
-            </form>
-
+            {currentUser&&
+            <div>
+                <h1 id='writePageTitle'>Creating your thought bubble...</h1>
+                <br/>
+                <form onSubmit={handleSubmit} id='writeNewForm'>
+                    <textarea type="string"
+                        placeholder="Give your post a name..."
+                        required
+                        id='newPostTitle'
+                        value = {title}
+                        onChange = {e=>setTitle(e.target.value)}/>
+                    <textarea type="text"
+                        placeholder="What are you thinking?"
+                        required
+                        id = 'newPostBody'
+                        value = {body}
+                        onChange = {e=>setBody(e.target.value)}/>
+                    <button type="submit" id='writeNewSubmit'>Submit</button>
+                </form>
+            </div>
+            }
+            {!currentUser&&
+            <div>
+                <h1 style={notFoundStyle}> Please Log In to Write...</h1>
+                <Redirect to="/login" />
+            </div>
+            }   
         </div>
     )
 }

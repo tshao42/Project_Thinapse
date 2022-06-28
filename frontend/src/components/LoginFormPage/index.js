@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect,NavLink } from 'react-router-dom';
 import './LoginForm.css';
 
 
@@ -28,6 +28,7 @@ function LoginFormPage() {
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className='loginContainer'>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -54,6 +55,8 @@ function LoginFormPage() {
       </label>
       <button type="submit" className='editButtonSubmit'>Log In</button>
     </form>
+    <NavLink to={'/signup'} className='generalLink'>Don't have an account yet?</NavLink>
+    </>
   );
 }
 
