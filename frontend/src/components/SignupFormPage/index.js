@@ -11,6 +11,7 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [avatarUrl, setavatarUrl]=useState();
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -19,7 +20,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ email, username, password, avatarUrl }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -29,13 +30,14 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='loginContainer'>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
         Email
         <input
+          className='loginInfo'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -46,6 +48,7 @@ function SignupFormPage() {
         Username
         <input
           type="text"
+          className='loginInfo'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -56,6 +59,7 @@ function SignupFormPage() {
         <input
           type="password"
           value={password}
+          className='loginInfo'
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -64,12 +68,22 @@ function SignupFormPage() {
         Confirm Password
         <input
           type="password"
+          className='loginInfo'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <label>
+        Drop us an avatar URL...[Not required]
+        <input
+          type="avatarUrl"
+          className='loginInfo'
+          value={avatarUrl}
+          onChange={(e) => setavatarUrl(e.target.value)}
+        />
+      </label>
+      <button type="submit" className='editButtonSubmit'>Sign Up</button>
     </form>
   );
 }

@@ -1,0 +1,30 @@
+.loginContainer{
+    width:40%;
+    padding-left:30%;
+    padding-right:30%;
+    font-size:20px;
+    font-family:'forma-djr-text';
+}
+
+
+.loginInfo{
+    width: 100%;
+    height: em;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 17px;
+    resize: none;
+    font-family:'forma-djr-text';
+    text-overflow: wrapping;
+    margin-bottom:30px;
+  
+}
+
+
+.loginPrompt{
+    font-size:20px;
+    font-family:'forma-djr-text';
+    margin-bottom:10px;
+}

@@ -32,15 +32,16 @@ function WriteComment({postId}){
 
     return(
         <div>
-            <h1>Tell the author what you think!</h1>
-            <h1>PostId here: {postId}</h1>
+            <h1 id='commentPromptTitle'>Leave a comment!</h1>
             <form onSubmit={handleSubmit}>
-                <input type="text"
-                placeholder='tell them what you think...'
+                <textarea type="text"
+                placeholder='anything to say...'
                 required
                 value = {body}
-                onChange = {e=>setBody(e.target.value)} />
-                <button type="submit">Submit comment!</button>
+                onChange = {e=>setBody(e.target.value)} 
+                id='commentBox'
+                />
+                <button type="submit" className='editButtonSubmit' >Submit comment!</button>
             </form>
         </div>
     )

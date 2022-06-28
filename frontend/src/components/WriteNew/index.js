@@ -65,13 +65,13 @@ function WriteNew(){
             <br/>
             <form onSubmit={handleSubmit} id='writeNewForm'>
                 <textarea type="string"
-                    placeholder="Give your masterpiece a title..."
+                    placeholder="Give your post a name..."
                     required
                     id='newPostTitle'
                     value = {title}
                     onChange = {e=>setTitle(e.target.value)}/>
                 <textarea type="text"
-                    placeholder="write your thoughts here"
+                    placeholder="What are you thinking?"
                     required
                     id = 'newPostBody'
                     value = {body}

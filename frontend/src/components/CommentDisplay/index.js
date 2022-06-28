@@ -28,29 +28,31 @@ function CommentDisplay({currentUserId}){
 
     return (
         <div>
-            <h2>Comments!</h2>
+            <h2>Comments:</h2>
             {Object.values(allComments).map(({User,body,id})=>(
                     <div>
-                        <h0>{User.username}</h0>
-                        <p>{body}</p>
-                        <p>{id}</p>
+                        <div className="userNamesContainer">
+                            <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
+                            {User.username}
+                        </div>
+                        <p className="textBody">{body}</p>
                         {/* {console.log('in cycle')}
                         {console.log(`${id} no bracket`)}
                         {console.log((`${{id}} with bracket`))} */}
-                        {!currentUserId
-                            ? <></>
-                            : <>{currentUserId===User.id
-                                ? <button onClick={
-                                    async(e)=>{
-                                        e.preventDefault();
-                                        console.log(`deleting at location... ${id}`)
-                                        await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
-                                    }
-                                }>Delete it</button>
-                                :<></>
+                        {currentUserId===User.id
+                            ? <button 
+                            className='editButtonSubmit'
+                            id='deletingComment'
+                            onClick={
+                                async(e)=>{
+                                    e.preventDefault();
+                                    // console.log(`deleting at location... ${id}`)
+                                    await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
+                                }
+                            }>Delete</button>
+                            :<></>
                             }
-                            </>
-                        }
+                        
                     </div>
                 ))}
         </div>

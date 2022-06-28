@@ -19,6 +19,9 @@
 }
 
 #newPostTitle{
+    padding-left:25px;
+    padding-top:25px;
+    margin-bottom: 10px;
     width: 100%;
     height: 3em;
     box-sizing: border-box;
@@ -39,18 +42,20 @@
     font-size: 20px;
     resize: none;
     font-family:'forma-djr-text';
+    margin-bottom: 30px;
   
 }
 
 
 #writeNewSubmit{
+    border-top: 20px;
     border:none;
     background-color: #0077B6;
-    width: 60%;
-    height: 10%;
+    width: 100%;
+    height: 5%;
     font-family:'voguing';
     font-size: 40pt;
-    border-radius: 5%;
+    border-radius: 4px;
     color:#CAF0F8;
     text-align: center;
     

@@ -1,0 +1,59 @@
+#editTitlePrompt{
+    font-size:20px;
+    color:#03045E;
+
+}
+#editPostTitle{
+    width:60%;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+}
+#editTitle{
+    width: 100%;
+    height: 2em;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    resize: none;
+    font-size: 30px;
+    font-family:'forma-djr-text';
+    margin-bottom: 10px;
+    padding-top:10px;
+    padding-left:10px;
+}
+#editBody{
+    width: 100%;
+    height: 10em;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 17px;
+    resize: none;
+    font-family:'forma-djr-text';
+    text-overflow: wrapping;
+    margin-bottom:30px;
+  
+}
+.editButtonSubmit{
+    background-color: #0077B6;
+    font-family:'voguing';
+    color:#CAF0F8;
+    border-radius: 4px;
+    width: 100%;
+    height: 40px;
+    font-size:20px;
+    border:none;
+}
+
+.editButtonSubmit:hover{
+    cursor: pointer;
+    background-color: #03045E;
+}
+
+#deletingComment{
+    margin-left:78%;
+    width:15%;
+}

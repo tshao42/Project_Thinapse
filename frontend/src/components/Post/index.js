@@ -72,19 +72,24 @@ function SinglePost(){
                         <div className='editOptions'>
                             {console.log('hit the route')}
                             {/*want wo make it a side bar??*/}
-                        <button id='edit-post' onClick={setOpen} name='edit-toggle'>Edit</button> 
+                        <button id='edit-post' onClick={setOpen} class='smallEditButtons' name='edit-toggle'>Edit</button> 
                             {openEdit
                             ?  <EditPost post= {post[postId]} />
                             :  <></>
                             }
-                            <button onClick={handleDelete}>Delete it</button>
+                            <button class='smallEditButtons' onClick={handleDelete}>Delete</button>
                         </div>
                         :<></>
                     }
                     </>
 
                 }
+                {currentUser &&
                     <CommentDisplay currentUserId={currentUser.id}/>
+                }
+                {!currentUser &&
+                    <CommentDisplay currentUserId={0} />
+                }
                     {currentUser &&     //if logged in
                         <WriteComment postId={postId} />
                     }
