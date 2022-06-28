@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { NavLink, useParams, useHistory, Redirect } from 'react-router-dom';
 import './WriteComment.css';
 import { createComment } from '../../store/comments';
 import { getAllComments } from '../../store/comments';
@@ -14,6 +14,7 @@ function WriteComment({postId}){
     const history = useHistory();
     const [body, setBody] = useState("");
     const currentUser = useSelector((state) => state.session.user);
+
 
     // console.log(`postId from WriteComment ${postId}`)
     const handleSubmit = async (e)=>{
@@ -32,16 +33,21 @@ function WriteComment({postId}){
 
     return(
         <div>
-            <h1>Tell the author what you think!</h1>
-            <h1>PostId here: {postId}</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text"
-                placeholder='tell them what you think...'
-                required
-                value = {body}
-                onChange = {e=>setBody(e.target.value)} />
-                <button type="submit">Submit comment!</button>
-            </form>
+            {currentUser &&
+            <div>
+                <h1 id='commentPromptTitle'>Leave a comment!</h1>
+                <form onSubmit={handleSubmit}>
+                    <textarea type="text"
+                    placeholder='anything to say...'
+                    required
+                    value = {body}
+                    onChange = {e=>setBody(e.target.value)} 
+                    id='commentBox'
+                    />
+                    <button type="submit" className='editButtonSubmit' >Submit comment!</button>
+                </form>
+            </div>
+            }                
         </div>
     )
 

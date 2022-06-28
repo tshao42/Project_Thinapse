@@ -3,4 +3,31 @@
     padding-top:10%;
     padding-left: 10%;
     padding-right: 10%;
+    font-family: 'forma-djr-text';
+
+}
+
+.textBody{
+    word-spacing: 2px;
+    margin-top:8px;
+    margin-bottom:30px;
+    line-height: 1.5 ;
+    text-align:left;
+}
+
+.smallEditButtons{
+    background-color: #0077B6;
+    font-family:'voguing';
+    color:#CAF0F8;
+    border-radius: 4px;
+    width: 10%;
+    height: 2%;
+    font-size:20px;
+    border:none;
+    margin-right:30px;
+}
+
+.smallEditButtons:hover{
+    cursor: pointer;
+    background-color: #03045E;
 }

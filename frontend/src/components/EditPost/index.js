@@ -55,17 +55,19 @@ function EditPost({post}){
     //TODO: when not logged in, instead render a message showing not allowed to
     return(
         <div>
-            <h1>Made some typos? Fix them here...</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="string"
+            <h1 id="editTitlePrompt">Made some typos? Fix them here...</h1>
+            <form onSubmit={handleSubmit} id='editPostTitle'>
+                <textarea type="string"
                     required
                     value = {title}
+                    id = 'editTitle'
                     onChange = {e=>setTitle(e.target.value)}/>
-                <input type="text"
+                <textarea type="text"
                     required
+                    id='editBody'
                     value = {body}
                 onChange = {e=>setBody(e.target.value)}/>
-                <button type="submit">Fix it!</button>
+                <button type="submit" id='smallEditButtons'>Fix it!</button>
             </form>
         </div>
     )

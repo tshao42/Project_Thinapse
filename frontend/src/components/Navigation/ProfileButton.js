@@ -8,7 +8,7 @@ function ProfileButton({ user }) {
 
   const openMenu = () => {
     if (showMenu) return;
-    setShowMenu(true);
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {
@@ -29,20 +29,11 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
-    </>
+    <div className="avatarContainer">
+        <img src={`${user.avatarUrl}` } onClick={()=>openMenu()} className='userAvatar' alt='useravatar' id='nav-bar-avatar'/>
+        <span id='usernamedisplay' className="fakeNavContainer">{user.username}</span>
+      <span onClick={(e)=>logout(e)} className='fakeNavContainer' id='log-out'>Log Out</span>
+    </div>
   );
 }
 

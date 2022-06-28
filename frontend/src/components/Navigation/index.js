@@ -1,10 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { login } from '../../store/session'
+import { NavLink, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
 
@@ -24,16 +26,35 @@ function Navigation({ isLoaded }){
       </>
     );
   }
+
+  const setDemoUser=()=>{
+    dispatch(login({credential:'demo@user.io', password: 'password'}));
+  }
   return (
     <div>
       <div className="navBar">
-        <ul class="navBarItems">
-            <a href="/">
+        <ul className="navBarItems">
+            <Link to="/">
               <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
-            </a>
+            </Link>
             <div class="rightNav">
-              <NavLink to="/write" style={ navOptionStyle}> Think now...</NavLink>
-              {isLoaded && sessionLinks}
+              {!sessionUser &&
+                <div onClick={()=>setDemoUser()}style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
+              }
+                {sessionUser &&
+                  <NavLink to="/write" style={ navOptionStyle}> Write it!</NavLink>
+                }
+                {!sessionUser &&isLoaded
+                ? sessionLinks
+                :<></>
+                }
+              <NavLink to="/about" style = {navOptionStyle}>About Us</NavLink>
+              {sessionUser && isLoaded
+              ?<div>
+                {sessionLinks}
+              </div>
+              :<></>
+              }
             </div>
         </ul>
       </div>
