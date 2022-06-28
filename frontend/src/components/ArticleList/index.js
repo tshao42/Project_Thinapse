@@ -19,23 +19,27 @@ function ArticleList(){
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])
+    const redirectStyle={'font-size':'19px', 'text-decoration': 'none', 'color': 'black'};
     return(
         <div>
             {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <div className="frontPage">
-                <div id="slogan">Think now,<br />React later
-                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...</div>
+                <div id="slogan">Bubbles can be round...or in other shapes
+                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...In the way you like</div>
                 </div>
                 <img src="https://i.imgur.com/FCj4MH1.png" id="frontPagePic" alt="node" />
             </div>
             <div className="postListContainer">
-            <h3>What others are thinking...</h3>
+            <h3 id="subdivisionTitle">What others are thinking...</h3>
             <ul>
-                {Object.values(allPosts).map(({id,title,User})=>(
+                {Object.values(allPosts).map(({id,title,User,body})=>(
                     <div className="individualPost">
-                        <div className="userNames">{User.username}</div>
-                        <div className="postTitlePreview">{title}</div>
-                        <NavLink to={`/posts/${id}`}>Read more...</NavLink>
+                        <div className="userNamesContainer">
+                            <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
+                            {User.username}
+                        </div>
+                        <NavLink to={`/posts/${id}`} style={redirectStyle}>{title}</NavLink>
+                        <p className="previewText">{body}</p>
                         {/* {console.log('in cycle')} */}
                     </div>
                 ))}

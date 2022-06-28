@@ -1,8 +1,8 @@
 .navBar{
     padding-top:10px;
     height:70px;
-    background-color: #FFD100;
-    border-bottom: 1px solid white;
+    background-color: #0077B6;
+    border-bottom: 1px solid #CAF0F8;
 }
 .navBarItems{
     padding-left: 10%;
@@ -25,8 +25,8 @@
     display: flex;
 
     padding-right:75px;
-    font-family: 'articulat-cf';
-    margin-top: 0;
+    font-family: 'voguing';
+    margin-top: 3px;
     text-decoration: none;
     padding-right:20px;
     font-size:20px;

@@ -8,7 +8,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
 
-  const navOptionStyle={textDecoration: 'none',color:'#2774AE'}
+  const navOptionStyle={textDecoration: 'none',color:'#CAF0F8'};
 
 
   let sessionLinks;
@@ -29,7 +29,7 @@ function Navigation({ isLoaded }){
       <div className="navBar">
         <ul class="navBarItems">
             <a href="/">
-              <img src="https://i.imgur.com/7QQ5G0J.png"  id="logo" alt="logo" />
+              <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
             </a>
             <div class="rightNav">
               <NavLink to="/write" style={ navOptionStyle}> Think now...</NavLink>

@@ -28,10 +28,6 @@ function SinglePost(){
         dispatch(getAllPosts());
         hydrating();
     }, [dispatch]);
-    //hydrate
-
-    //destruct the state
-    //already referring here
 
     const hydrating = async ()=>{
         await dispatch(loadSinglePost(postId)).then(()=>setLoaded(true));
@@ -43,7 +39,11 @@ function SinglePost(){
     return(
         <div>
             {loaded &&
-                <div>
+                <div className="postContainer">
+                    <div className="userNamesContainer">
+                    <img className="userAvatar" src={post[postId].User.avatarUrl} alt="avatar"></img>
+                        {post[postId].User.username}
+                    </div>
                     <h1>SinglePost {post[postId].User.username}</h1>
                     <h3>{post[postId].User.username}</h3>
                     <h2>{post[postId].title}</h2>
