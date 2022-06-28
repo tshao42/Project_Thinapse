@@ -43,8 +43,7 @@ function ArticleList(){
                         {/* {console.log('in cycle')} */}
                     </div>
                 ))}
-                <script src="https://s3-us-west-2.amazonaws.com/kaboodle/kaboodle.js" type="text/javascript"></script>
-                {/* {console.log('out of cycle')} */}
+            {/* {console.log('out of cycle')} */}
             </ul>
             </div>
         </div>
