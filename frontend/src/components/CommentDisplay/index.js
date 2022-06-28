@@ -5,7 +5,7 @@ import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deleteComment, getAllComments } from '../../store/comments';
 import './CommentDisplay.css';
 
-function CommentDisplay(){
+function CommentDisplay({currentUserId}){
     const {postId} = useParams();
     // console.log(`this is the postId: ${postId}`)
     const allComments = useSelector(state => {
@@ -37,13 +37,20 @@ function CommentDisplay(){
                         {/* {console.log('in cycle')}
                         {console.log(`${id} no bracket`)}
                         {console.log((`${{id}} with bracket`))} */}
-                        <button onClick={
-                            async(e)=>{
-                                e.preventDefault();
-                                console.log(`deleting at location... ${id}`)
-                                await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
+                        {!currentUserId
+                            ? <></>
+                            : <>{currentUserId===User.id
+                                ? <button onClick={
+                                    async(e)=>{
+                                        e.preventDefault();
+                                        console.log(`deleting at location... ${id}`)
+                                        await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
+                                    }
+                                }>Delete it</button>
+                                :<></>
                             }
-                        }>Delete it</button>
+                            </>
+                        }
                     </div>
                 ))}
         </div>
