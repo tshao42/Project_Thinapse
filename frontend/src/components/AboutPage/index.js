@@ -3,7 +3,7 @@ import './AboutPage.css'
 
 function AboutInfo(){
     return(
-        <h1>Placeholder for Project info and about me</h1>
+        <h1>Title</h1>
     )
 }
 

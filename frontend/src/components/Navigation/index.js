@@ -1,6 +1,6 @@
 import React from 'react';
 import { login } from '../../store/session'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -34,9 +34,9 @@ function Navigation({ isLoaded }){
     <div>
       <div className="navBar">
         <ul className="navBarItems">
-            <a href="/">
+            <Link to="/">
               <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
-            </a>
+            </Link>
             <div class="rightNav">
               {!sessionUser &&
                 <div onClick={()=>setDemoUser()}style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
