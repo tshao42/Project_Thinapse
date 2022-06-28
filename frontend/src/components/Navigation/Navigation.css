@@ -1,0 +1,42 @@
+.navBar{
+    padding-top:10px;
+    height:70px;
+    background-color: #0077B6;
+    border-bottom: 1px solid #CAF0F8;
+}
+.navBarItems{
+    padding-left: 10%;
+    padding-right: 50px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.navBarItems{
+    display:flex;
+    flex-wrap: nowrap;
+}
+
+#logo{
+    height:36px;
+}
+
+
+.rightNav{
+    display: flex;
+
+    padding-right:75px;
+    font-family: 'voguing';
+    margin-top: 3px;
+    text-decoration: none;
+    padding-right:20px;
+    font-size:20px;
+    color:#2774AE;
+    gap: 30px;
+    
+}
+
+.rightNav link{
+    text-decoration: none;
+    color:#2774AE;
+}
+

@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
+    },
+    avatarUrl: DataTypes.STRING
   },
   {
     defaultScope: {
@@ -50,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
+    User.hasMany(models.Post, {foreignKey: 'authorId',onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Comment, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
+    User.hasMany(models.Follow, { as: 'followed', foreignKey: 'userId', onDelete: 'CASCADE', hooks: true} );
+    User.hasMany(models.Follow, { as: 'follower', foreignKey: 'followerId', onDelete: 'CASCADE', hooks: true} );
+
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
