@@ -7,6 +7,10 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
+
+  const navOptionStyle={textDecoration: 'none',color:'#2774AE'}
+
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -15,23 +19,22 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/login" style={navOptionStyle}>Log In</NavLink>
+        <NavLink to="/signup" style={navOptionStyle}>Sign Up</NavLink>
       </>
     );
   }
-
   return (
     <div>
       <div className="navBar">
-        <ul>
+        <ul class="navBarItems">
             <a href="/">
               <img src="https://i.imgur.com/7QQ5G0J.png"  id="logo" alt="logo" />
             </a>
-            <div class="NavItems">
-            <NavLink to="/write" className="nav-Link-right"> Think now...</NavLink>
+            <div class="rightNav">
+              <NavLink to="/write" style={ navOptionStyle}> Think now...</NavLink>
+              {isLoaded && sessionLinks}
             </div>
-            {isLoaded && sessionLinks}
         </ul>
       </div>
     </div>
