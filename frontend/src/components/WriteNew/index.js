@@ -60,7 +60,7 @@ function WriteNew(){
 
     //TODO: when not logged in, instead render a message showing not allowed to
     return(
-        <div class='pageContainer'>
+        <div className='pageContainer'>
             <h1 id='writePageTitle'>Creating your thought bubble...</h1>
             <br/>
             <form onSubmit={handleSubmit} id='writeNewForm'>

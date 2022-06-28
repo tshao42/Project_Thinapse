@@ -17,6 +17,7 @@ function SinglePost(){
     //use dispatch
     const dispatch = useDispatch();
     const history = useHistory();
+    let [openEdit, setOpenEdit] = useState(false);
 
     //get the one post
     const post = useSelector(state => {
@@ -32,6 +33,7 @@ function SinglePost(){
         hydrating();
     }, [dispatch]);
 
+
     const hydrating = async ()=>{
         await dispatch(loadSinglePost(postId))
         .then(()=>setLoaded(true));
@@ -42,6 +44,13 @@ function SinglePost(){
         await dispatch(deletePost(postId))
         .then(()=>history.push(`/`));
     }
+
+
+    const setOpen = ()=>{
+        if (openEdit) setOpenEdit(false);
+        if (!openEdit) setOpenEdit(true);
+    }
+
 
 
     return(
@@ -61,8 +70,13 @@ function SinglePost(){
                     ? <></>
                     : <>{currentUser.id===post[postId].authorId ?
                         <div className='editOptions'>
+                            {console.log('hit the route')}
                             {/*want wo make it a side bar??*/}
-                            <EditPost post= {post[postId]} />
+                        <button id='edit-post' onClick={setOpen} name='edit-toggle'>Edit</button> 
+                            {openEdit
+                            ?  <EditPost post= {post[postId]} />
+                            :  <></>
+                            }
                             <button onClick={handleDelete}>Delete it</button>
                         </div>
                         :<></>

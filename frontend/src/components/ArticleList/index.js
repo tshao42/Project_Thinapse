@@ -19,13 +19,13 @@ function ArticleList(){
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])
-    const redirectStyle={'font-size':'19px', 'text-decoration': 'none', 'color': 'black'};
+    const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
     return(
         <div>
             {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <div className="frontPage">
-                <div id="slogan">Bubbles can be round...or in other shapes
-                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...In the way you like</div>
+                <div id="slogan">Think. React.<br />Now.
+                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...</div>
                 </div>
                 <img src="https://i.imgur.com/FCj4MH1.png" id="frontPagePic" alt="node" />
             </div>
