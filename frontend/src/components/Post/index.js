@@ -21,6 +21,9 @@ function SinglePost(){
     const post = useSelector(state => {
         return state.posts.posts;
     });
+    
+    const currentUser = useSelector((state) => state.session.user);
+
     const [loaded, setLoaded] = useState(false);
     // const {title, body, id, User} = post;
 
@@ -36,6 +39,7 @@ function SinglePost(){
         e.preventDefault();
         await dispatch(deletePost(postId)).then(()=>history.push(`/`));
     }
+    const belongsToUser=(currentUser.id===post[postId].User.id);
     return(
         <div>
             {loaded &&
@@ -48,10 +52,16 @@ function SinglePost(){
                     <h3>{post[postId].User.username}</h3>
                     <h2>{post[postId].title}</h2>
                     <p>{post[postId].body}</p>
+                    {belongsToUser && 
+                    <>
                     <EditPost post= {post[postId]} />
                     <button onClick={handleDelete}>Delete it</button>
+                    </>
+                    }
                     <CommentDisplay />
+                    {currentUser.id &&
                     <WriteComment postId={postId} />
+                    }
                 </div>
             }
         </div>
