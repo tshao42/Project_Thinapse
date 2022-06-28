@@ -23,8 +23,8 @@ function SinglePost(){
     });
     
     const currentUser = useSelector((state) => state.session.user);
-
     const [loaded, setLoaded] = useState(false);
+    const [belongs, setBelongs] = useState(false);
     // const {title, body, id, User} = post;
 
     useEffect(()=>{
@@ -33,13 +33,15 @@ function SinglePost(){
     }, [dispatch]);
 
     const hydrating = async ()=>{
-        await dispatch(loadSinglePost(postId)).then(()=>setLoaded(true));
+        await dispatch(loadSinglePost(postId))
+        .then(()=>setLoaded(true));
     }
     const handleDelete = async (e)=>{
         e.preventDefault();
-        await dispatch(deletePost(postId)).then(()=>history.push(`/`));
+        await dispatch(deletePost(postId))
+        .then(setBelongs(currentUser.id===post[postId].User.id))
+        .then(()=>history.push(`/`));
     }
-    const belongsToUser=(currentUser.id===post[postId].User.id);
     return(
         <div>
             {loaded &&
@@ -52,14 +54,14 @@ function SinglePost(){
                     <h3>{post[postId].User.username}</h3>
                     <h2>{post[postId].title}</h2>
                     <p>{post[postId].body}</p>
-                    {belongsToUser && 
+                    {belongs && 
                     <>
                     <EditPost post= {post[postId]} />
                     <button onClick={handleDelete}>Delete it</button>
                     </>
                     }
                     <CommentDisplay />
-                    {currentUser.id &&
+                    {currentUser &&
                     <WriteComment postId={postId} />
                     }
                 </div>
