@@ -6,6 +6,7 @@ function AboutInfo(){
     return(
         <div class='postContainer'>
         <h1>ThoughtBubble Info</h1>
+        <div>A Medium imitation project with minimalist interface</div>
         <ul class='textBody'>
             <div>Stack Used:</div>
             <ol>
