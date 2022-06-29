@@ -32,7 +32,7 @@ function ArticleList(){
             </div>
             <div className="postListContainer">
             <h3 id="subdivisionTitle">What others are thinking...</h3>
-            <ul>
+            <ul class='latestDisplay'>
                 {Object.values(allPosts).map(({id,title,User,body})=>(
                     <div className="individualPost">
                         <div className="userNamesContainer">

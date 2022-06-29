@@ -40,6 +40,7 @@
     font-family: 'forma-djr-text';
     padding-top:3%;
     padding-bottom:5%;
+    
 }
 .userNamesContainer{
     font-size:16px;
@@ -51,6 +52,10 @@
     color:#03045E
 }
 
+.latestDisplay{
+    display:flex;
+    flex-direction: column-reverse;
+}
 
 .userAvatar{
     vertical-align: middle;
