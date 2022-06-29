@@ -79,7 +79,7 @@ router.put(
         // const ownId = currentUser.id;
 
         const postId = req.params.id;
-        console.log(`postId at line 81 is ${postId}`)
+        // console.log(`postId at line 81 is ${postId}`)
         const post = await db.Post.findByPk(postId)
         await post.update(req.body);
         console.log(`updated post is ${post}`);

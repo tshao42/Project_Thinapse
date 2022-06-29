@@ -19,6 +19,10 @@ const remove = (commentId) => ({
     commentId
 })
 
+const update = (comment)=>({
+    type: UPDATE,
+    comment
+});
 export const getAllComments = (postId) => async dispatch => {
     const response = await csrfFetch(`/api/comments/forpost/${postId}`);
     if (response.ok){
@@ -43,17 +47,18 @@ export const createComment = (payload) => async dispatch =>{
         return comment;
 }
 
-export const updateComment = (commentId, postId, payload) => async dispatch => {
-    const response = await csrfFetch(`/api/posts/${postId}/comments/${commentId}`,{
+//extra feature
+export const updateComment = (commentId, payload) => async dispatch => {
+    const {body} = payload;
+    const response = await csrfFetch(`/api/comments/${commentId}`,{
         method: 'PUT',
         headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({body})
     })
     if (response.ok) {
         const comment = await response.json()
-        dispatch(create(comment))
-        return comment;
-    }
+        dispatch(update(comment))
+        }
 }
 
 export const deleteComment = (commentId) => async dispatch => {
@@ -81,6 +86,11 @@ const commentsReducer = (state = initialState, action) => {
         const newState = { ...state };
         delete newState.comments[action.commentId];
         return newState;
+      case UPDATE:{
+        let baseState = {...state};
+        baseState.comments[action.comment.id] = action.comment;
+        return baseState;
+      }
       case CREATE:
         return {...state, [action.comment.id]: action.comment};
       default:
