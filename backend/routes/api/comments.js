@@ -57,22 +57,21 @@ router.post('/',asyncHandler(
 //UPDATE
 //OPTIONAL
 router.put(
-    '/:id(\\d+)/comments/:commentId(\\d+)',
+    '/:commentId(\\d+)',
     // requireAuth,
     // restoreUser,
     asyncHandler(async function (req, res) {
         //user Id
-        const { user } = req;
-        const currentUser = user.toSafeObject()
-        const ownId = currentUser.id;
-
         const commentId = req.params.commentId;
-        const comment = await db.commentId.findByPk(commentId);
-        CheckPermissions(commentId, ownId)
-
-        const id = await post.update(req.body);
-        const updatedComment = await db.Comment.findByPk(id);
-        return res.json(updatedComment);
+        const comment = await db.Comment.findByPk(commentId);
+        await comment.update(req.body);
+        const updatedComment = await db.Comment.findByPk(commentId,{
+            include:[
+                {model: db.User,
+                required:false}
+            ]
+        });
+        return res.json (updatedComment);
     })
   );
 

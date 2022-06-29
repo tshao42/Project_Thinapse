@@ -42,7 +42,7 @@ function WriteComment({postId}){
                     required
                     value = {body}
                     onChange = {e=>setBody(e.target.value)} 
-                    id='commentBox'
+                    className='commentBox'
                     />
                     <button type="submit" className='editButtonSubmit' >Submit comment!</button>
                 </form>

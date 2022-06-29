@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Link, useHistory } from 'react-router-dom';
 import { deleteComment, getAllComments } from '../../store/comments';
+import EditComment from '../EditComment';
 import './CommentDisplay.css';
 
 function CommentDisplay({currentUserId}){
@@ -16,6 +17,13 @@ function CommentDisplay({currentUserId}){
         dispatch(getAllComments(postId));
     },[dispatch])
 
+    let [openEdit, setOpenEdit] = useState(false);
+
+
+    const setOpenEditComment = ()=>{
+        if (openEdit) setOpenEdit(false);
+        if (!openEdit) setOpenEdit(true);
+    }
 
 
     // const [commentId, setCommentId] = useState(-1)
@@ -40,16 +48,31 @@ function CommentDisplay({currentUserId}){
                         {console.log(`${id} no bracket`)}
                         {console.log((`${{id}} with bracket`))} */}
                         {currentUserId===User.id
-                            ? <button 
-                            className='editButtonSubmit'
-                            id='deletingComment'
-                            onClick={
-                                async(e)=>{
-                                    e.preventDefault();
-                                    // console.log(`deleting at location... ${id}`)
-                                    await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
+                            ? 
+                            <div className="editOptions" id="commenteditOptions">
+                                <button 
+                                className='smallEditButtons'
+                                id='deletingComment'
+                                onClick={
+                                    async(e)=>{
+                                        e.preventDefault();
+                                        // console.log(`deleting at location... ${id}`)
+                                        await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
+                                    }
+                                }>Delete</button>
+                                <button
+                                className='smallEditButtons'
+                                id='editingCommentOpener'
+                                onClick={
+                                    setOpenEditComment
+                                }>Edit
+                                {console.log(openEdit)}
+                                </button>
+                                {openEdit
+                                ? <EditComment comment={allComments[id]} setOpenEdit={setOpenEdit}/>
+                                : <></>
                                 }
-                            }>Delete</button>
+                            </div>
                             :<></>
                             }
                         
