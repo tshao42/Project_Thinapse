@@ -21,7 +21,20 @@ router.get('/', asyncHandler(async function(_req, res) {
             required:false
         }]
     })
-    console.log(posts);
+    return res.json(posts);
+}));
+
+router.get('/users/:userId', asyncHandler(async function(req, res) {
+    const userId = req.params.userId;
+    const posts = await db.Post.findAll({
+        where:{
+            authorId: userId
+        },
+        include:[{
+            model: db.User,
+            required:false
+        }]
+    })
     return res.json(posts);
 }));
 
@@ -79,10 +92,8 @@ router.put(
         // const ownId = currentUser.id;
 
         const postId = req.params.id;
-        // console.log(`postId at line 81 is ${postId}`)
         const post = await db.Post.findByPk(postId)
         await post.update(req.body);
-        console.log(`updated post is ${post}`);
         const updatedPost = await db.Post.findByPk(postId,{
             include:[{
                 model: db.User,

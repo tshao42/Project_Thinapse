@@ -39,6 +39,15 @@ export const getAllPosts =() => async dispatch => {
     }
 }
 
+//extra
+export const getAllPostsByUserId = (userId) => async dispatch =>{
+    const response = await csrfFetch(`/api/posts/users/${userId}`);
+    if (response.ok){
+        const posts = await response.json();
+        dispatch(loadall(posts));
+    } else return false;
+}
+
 export const loadSinglePost = (postId) => async dispatch =>{
     const response = await csrfFetch (`/api/posts/${postId}`);
     if (response.ok){

@@ -11,6 +11,7 @@ import WriteNew from "./components/WriteNew";
 import EditPost from "./components/EditPost";
 import NotFound from './components/NotFound'
 import AboutPage from './components/AboutPage'
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path='/about'>
             <AboutPage />
+          </Route>
+          <Route exact path ="/users/:profileId">
+            <UserProfile />
           </Route>
           <Route component={NotFound} />
         </Switch>

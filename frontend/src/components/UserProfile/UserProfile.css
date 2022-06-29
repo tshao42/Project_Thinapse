@@ -1,0 +1,15 @@
+.profilePagePostContainer{
+    margin-left: 10%;
+    width: 90%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.leftHalfProfile{
+    width: 60%;
+}
+
+.singleUserPostFeed{
+    display: flex;
+    flex-direction: column-reverse;
+}
