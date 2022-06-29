@@ -26,7 +26,7 @@ function AboutInfo(){
                     <a href='https://github.com/tshao42/ThoughtBubble_React_Redux' style= {{textDecoration:'none', color:'#0077B6'}}>{`   `}ThoughtBubble React/Redux</a>
             </div>
             <div>LinkedIn Profile:
-                <a href='www.linkedin.com/in/tianyishao42' style= {{textDecoration:'none', color:'#0077B6'}}>{`   `} My LinkedIn Profile</a>
+                <a href='https://www.linkedin.com/in/tianyishao42' style= {{textDecoration:'none', color:'#0077B6'}}>{`   `} My LinkedIn Profile</a>
             </div>
         </div>
         </div>
