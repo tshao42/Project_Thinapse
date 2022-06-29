@@ -49,3 +49,10 @@
     - Database association is extremely crucial. It was very important to understand how to properly design the relations of the database.
 - Understanding of React/Redux mechanism
     - React and Redux are two relatively difficult tools to comprehend, and the abstract thinking involved in the understanding led to very significant difficulties in the initial stage of this project. Hydrating state upon rerending and the understanding of React hooks, Redux thunk functions and reducers, and asynchronicity of JavaScript all made it very essential to keep a good control over the order or events when re-rendering.
+
+# Stack used
+- ExpressJs, Sequelize
+- React, Redux, CSS
+
+
+
