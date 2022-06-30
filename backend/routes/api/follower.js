@@ -16,12 +16,12 @@ router.get('/following/:userId', asyncHandler(async function(req, res) {
             model: db.User,
             required:true,
             as: 'follower'
-        },
-        {
-            model: db.User,
-            required:true,
-            as: 'followed'
-        }],
+            },
+            {
+                model: db.User,
+                required:true,
+                as: 'following'
+            }],
         where: {
             followerId: followerId
         }

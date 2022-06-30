@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   Follow.associate = function(models) {
     // associations can be defined here
     Follow.belongsTo(models.User, { as: 'follower', onDelete: 'CASCADE'});
-    Follow.belongsTo(models.User, { as: 'followed', onDelete: 'CASCADE'});
+    Follow.belongsTo(models.User, { as: 'following', onDelete: 'CASCADE'});
   };
   return Follow;
 };
