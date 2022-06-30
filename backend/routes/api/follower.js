@@ -11,12 +11,18 @@ const db = require('../../db/models');
 //who are the user with userId following?
 router.get('/following/:userId', asyncHandler(async function(req, res) {
     const followerId = req.params.userId;
-    const following = await db.Post.findAll({
+    const following = await db.Follow.findAll({
         include:[{
             model: db.User,
-            required:true
+            required:true,
+            as: 'follower'
+        },
+        {
+            model: db.User,
+            required:true,
+            as: 'followed'
         }],
-        where:{
+        where: {
             followerId: followerId
         }
     });
