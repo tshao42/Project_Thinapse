@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
 import { getAllCommentsInDatabaseByUser } from '../../store/comments';
@@ -11,6 +11,9 @@ function UserProfile(){
     //necessary function calls
     const { profileId } = useParams();
     const dispatch = useDispatch();
+    //hydrating state
+    const [loaded, setLoaded] = useState(false);
+
 
     //initialization: get all the posts and comments
     //and then try to grab the users from the database
@@ -29,39 +32,66 @@ function UserProfile(){
     //==============for followerUse===============
     const currentUser = useSelector(state=>{
         return state.session.user;
-    });
-    
+    });    
+    const [showFollow, setShowFollow] = useState(false);
     const ownerOfProfile = useSelector(state=>{
         return state.users.users;
     });
+    
 
     //useEffect;
     //hydrating when rendering
     //need to grab all the posts and comments
     //user would be grabbed from the session data
     useEffect(() => {
-        dispatch(getAllPostsByUserId(profileId));
-        // dispatch(getAllCommentsInDatabaseByUser(profileId));
-        dispatch(loadOneUser(profileId));
-
+        hydrating();
     },[dispatch]);
 
+
+    //interesting thing:
+    //reminder to use parseInt for return from the useParam
+    const hydrating = async()=>{
+        await dispatch(getAllPostsByUserId(profileId)).
+        then (()=>dispatch(loadOneUser(profileId)))
+        .then(()=>setLoaded(true))
+        .then(()=>setShowFollow(currentUser&&(currentUser.id!==parseInt(profileId))));
+    }
+
+    const numberOfPosts = Object.keys(allPosts).length;
+    
     return(
-        <div class='leftHalfProfile'>
-            <div>Posts by</div>
-            <div className='profilePagePostContainer'>
-                <ol className='singleUserPostFeed'>
-                {Object.values(allPosts).map(({title,body})=>(
-                    <div className='individualPost'>
-                        <h1>{title}</h1>
-                        <p>{body}</p>
-                    </div>
-                ))}
-                </ol>
+        <div>
+        {loaded &&
+        <div className='overallProfileContainer'>
+            <div class='leftHalfProfile'>
+                <div className='profilePagePostContainer'>
+                    <ol className='singleUserPostFeed'>
+                    {Object.values(allPosts).map(({title,body})=>(
+                        <div className='individualPost'>
+                            <h1>{title}</h1>
+                            <p>{body}</p>
+                        </div>
+                    ))}
+                    <div id='postBySingleTitle'>Posts by {ownerOfProfile[profileId].username}</div>
+                    </ol>
+                </div>
+            </div>
+            <div className='rightHalfProfile'>
+                <div id = 'userNameLargerDisplay'>{ownerOfProfile[profileId].username}</div>
+                <img id='profilePageAvatar' src={`${ownerOfProfile[profileId].avatarUrl}`} alt='avatar' />
+                <div className='statisticsOfUser'>{numberOfPosts} posts so far on ThoughtBubble</div>
+                {currentUser &&
+                <div>
+                {showFollow &&
+                    <div className='statisticsOfUser'>Follow</div>
+                }
+                </div>
+                }
             </div>
         </div>
+        }
+        </div>
     )
-
 }
 
 
