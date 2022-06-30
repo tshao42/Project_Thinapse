@@ -8,8 +8,8 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const homeRouter = require ('./home.js')
 const postRouter = require('./post.js')
-const userRouter = require('./userpage.js');
 const commentRouter = require('./comments.js')
+const followRouter = require('./follower.js')
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
@@ -21,7 +21,8 @@ router.use('/', homeRouter);
 router.use('/posts', postRouter);
 
 //users page
-router.use('/userinfo', userRouter);
 router.use('/comments', commentRouter);
+
+router.use('/follow', followRouter);
 
 module.exports = router;
