@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Follow = sequelize.define('Follow', {
     followingId: DataTypes.INTEGER,
@@ -11,3 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Follow;
 };
+
+queryInterface.addConstraint('Follows',{
+  fields:['followingId', 'followerId'],
+  type: unique,
+  name: 'onlyOneAssociation'
+})

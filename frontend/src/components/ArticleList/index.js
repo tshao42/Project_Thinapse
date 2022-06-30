@@ -22,7 +22,6 @@ function ArticleList(){
     const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
     return(
         <div>
-            {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <div className="frontPage">
                 <div id="slogan">Think. React.<br />Now.
                     <p><br></br></p>
@@ -41,10 +40,8 @@ function ArticleList(){
                         </div>
                         <NavLink to={`/posts/${id}`} style={redirectStyle}>{title}</NavLink>
                         <p className="previewText">{body}</p>
-                        {/* {console.log('in cycle')} */}
                     </div>
                 ))}
-            {/* {console.log('out of cycle')} */}
             </ul>
             </div>
         </div>

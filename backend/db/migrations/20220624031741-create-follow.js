@@ -30,9 +30,17 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date()
       }
-    });
+    })
+    // .then(()=>queryInterface.addConstraint('Follows',{
+    //   fields:['followingId', 'followerId'],
+    //   type: 'unique',
+    //   name: 'onlyOneAssociation'
+    // }));
+    
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Follows');
+    return queryInterface.dropTable('Follows')
+    // .then(()=>queryInterface.removeConstraint('Follows', 'onelyOneAssociation'));
   }
 };
+

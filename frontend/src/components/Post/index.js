@@ -58,7 +58,6 @@ function SinglePost(){
         <div>
             {loaded &&
                 <div className="postContainer">
-                    {/* {console.log('Rendered')} */}
                     <div className="userNamesContainer">
                     <img className="userAvatar" src={post[postId].User.avatarUrl} alt="avatar"></img>
                         {post[postId].User.username}
@@ -71,7 +70,6 @@ function SinglePost(){
                     ? <></>
                     : <>{currentUser.id===post[postId].authorId ?
                         <div className='editOptions'>
-                            {console.log('hit the route')}
                             {/*want wo make it a side bar??*/}
                         <button id='edit-post' onClick={setOpen} class='smallEditButtons' name='edit-toggle'>Edit</button> 
                             {openEdit

@@ -14,9 +14,6 @@ function WriteComment({postId}){
     const history = useHistory();
     const [body, setBody] = useState("");
     const currentUser = useSelector((state) => state.session.user);
-
-
-    // console.log(`postId from WriteComment ${postId}`)
     const handleSubmit = async (e)=>{
         e.preventDefault();
         //payload
@@ -25,7 +22,6 @@ function WriteComment({postId}){
             postId,
             body
         }
-        // console.log(`handleSubmit here ${payload}`);
         await dispatch(createComment(payload)).then(()=>dispatch(getAllComments(postId)));
         setBody("");
 //error handling

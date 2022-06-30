@@ -6,6 +6,7 @@ import { getAllCommentsInDatabaseByUser } from '../../store/comments';
 import { getAllPostsByUserId } from '../../store/posts';
 import { loadOneUser } from '../../store/users';
 import './UserProfile.css';
+import { checkUserFollow } from '../../store/follow';
 
 function UserProfile(){
     //necessary function calls
@@ -33,6 +34,12 @@ function UserProfile(){
     const currentUser = useSelector(state=>{
         return state.session.user;
     });    
+    const userFollower = useSelector(state=>{
+        return state.follow.followers;
+    })
+    const userFollowing = useSelector(state=>{
+        return state.follow.following;
+    })
     const [showFollow, setShowFollow] = useState(false);
     const ownerOfProfile = useSelector(state=>{
         return state.users.users;
@@ -53,6 +60,7 @@ function UserProfile(){
     const hydrating = async()=>{
         await dispatch(getAllPostsByUserId(profileId)).
         then (()=>dispatch(loadOneUser(profileId)))
+        .then (()=>dispatch(checkUserFollow(profileId)))
         .then(()=>setLoaded(true))
         .then(()=>setShowFollow(currentUser&&(currentUser.id!==parseInt(profileId))));
     }
