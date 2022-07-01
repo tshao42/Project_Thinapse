@@ -31,11 +31,11 @@ module.exports = {
         defaultValue: new Date()
       }
     })
-    // .then(()=>queryInterface.addConstraint('Follows',{
-    //   fields:['followingId', 'followerId'],
-    //   type: 'unique',
-    //   name: 'onlyOneAssociation'
-    // }));
+    .then(()=>queryInterface.addConstraint('Follows',{
+      fields:['followingId', 'followerId'],
+      type: 'unique',
+      name: 'onlyOneAssociation'
+    }));
     
   },
   down: (queryInterface, Sequelize) => {

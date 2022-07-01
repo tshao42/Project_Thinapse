@@ -10,15 +10,14 @@ const loadUserFollow = (followers,following)=>({
     following
 });
 
-const addFollow = (newFollow)=>({
+const addFollow = (following)=>({
     type: ADD_FOLLOW,
-    newFollow
+    following
 })
 
-const removeFollow = (followerId, followingId)=>({
+const removeFollow = (following)=>({
     type: UNFOLLOW,
-    followerId, 
-    followingId
+    following
 })
 
 
@@ -47,9 +46,9 @@ export const createFollow = (followerId, followingId)=>async dispatch=>{
         },
         body: JSON.stringify({followerId, followingId})
     });
-    const newFollow = await response.json();
-    dispatch (addFollow(newFollow));
-    return newFollow;
+    const {following} = await response.json();
+    dispatch (addFollow(following));
+    return following;
 
 }
 
@@ -70,18 +69,20 @@ const initialState = { followers:{}, following:{} };
 const followReducer = ( state = initialState, action) => {
     switch (action.type){
         case FIND_USER_FOLLOWING:
-            let loadedFollow = { followers:{}, following:{} };
+            let loadedFollow = { ...state, followers:{}, following:{} };
             action.followers.forEach(
-                (follower)=>loadedFollow.followers = follower
+                (follower)=>loadedFollow.followers[follower.followerId] = follower
             );
             action.following.forEach(
-                (following)=>loadedFollow.following = following
+                (following)=>loadedFollow.following[following.followingId]  = following
             )
             return loadedFollow;
         case ADD_FOLLOW:
-            return { ...state, action.newFollow};
+            return {...state, following: action.following};
         case UNFOLLOW:
-            return;
+            const deletedFollowing = {...state};
+            delete deletedFollowing.following[action.following];
+            return deletedFollowing;
         default:
             return state;
     }

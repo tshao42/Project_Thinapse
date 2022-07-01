@@ -12,9 +12,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Follow;
 };
-
-queryInterface.addConstraint('Follows',{
-  fields:['followingId', 'followerId'],
-  type: unique,
-  name: 'onlyOneAssociation'
-})

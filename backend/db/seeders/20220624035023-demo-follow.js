@@ -5,7 +5,12 @@ module.exports = {
     return queryInterface.bulkInsert('Follows', [{
       followingId: 1,
       followerId: 3
-    }], {});
+    },
+    {
+      followingId:2,
+      followerId: 3
+    }
+    ], {});
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.

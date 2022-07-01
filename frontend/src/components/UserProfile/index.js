@@ -7,6 +7,7 @@ import { getAllPostsByUserId } from '../../store/posts';
 import { loadOneUser } from '../../store/users';
 import './UserProfile.css';
 import { checkUserFollow } from '../../store/follow';
+import FollowerOption from './FollowerOption';
 
 function UserProfile(){
     //necessary function calls
@@ -34,12 +35,12 @@ function UserProfile(){
     const currentUser = useSelector(state=>{
         return state.session.user;
     });    
-    const userFollower = useSelector(state=>{
-        return state.follow.followers;
-    })
-    const userFollowing = useSelector(state=>{
-        return state.follow.following;
-    })
+    // const userFollower = useSelector(state=>{
+    //     return state.follow.followers;
+    // })
+    // const userFollowing = useSelector(state=>{
+    //     return state.follow.following;
+    // })
     const [showFollow, setShowFollow] = useState(false);
     const ownerOfProfile = useSelector(state=>{
         return state.users.users;
@@ -71,7 +72,7 @@ function UserProfile(){
         <div>
         {loaded &&
         <div className='overallProfileContainer'>
-            <div class='leftHalfProfile'>
+            <div className='leftHalfProfile'>
                 <div className='profilePagePostContainer'>
                     <ol className='singleUserPostFeed'>
                     {Object.values(allPosts).map(({title,body})=>(
@@ -91,7 +92,10 @@ function UserProfile(){
                 {currentUser &&
                 <div>
                 {showFollow &&
+                <div>
                     <div className='statisticsOfUser'>Follow</div>
+                    <FollowerOption />
+                </div>
                 }
                 </div>
                 }

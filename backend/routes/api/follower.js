@@ -63,25 +63,37 @@ router.get('/user/:userId', asyncHandler(async function(req, res) {
 //add the follow
 router.post('/user/:followerId', asyncHandler(async function (req,res){
     const followerId = req.params.followerId;
-    const newFollow = await db.Follow.build(req.body);
-    await newFollow.save();
-    const followingRelation = await db.Follow.findAll({
-        include:[{
-            model: db.User,
-            required:true,
-            as: 'follower'
-            },
-            {
-                model: db.User,
-                required:true,
-                as: 'following'
-            }],
-        where: {
+    const followingId = req.body.followingId;
+    //first find if there is existing
+    const existing = await db.Follow.findAll({
+        where:{
             followerId: followerId,
-            followingId: newFollow.followingId
+            followingId: followingId,
         }
     });
-    res.json({"followers": followingRelation});
+    if (existing){
+        return res.json({"followers": existing});
+    } else{
+        const newFollow = await db.Follow.build(req.body);
+        await newFollow.save();
+        const followingRelation = await db.Follow.findAll({
+            include:[{
+                model: db.User,
+                required:true,
+                as: 'follower'
+                },
+                {
+                    model: db.User,
+                    required:true,
+                    as: 'following'
+                }],
+            where: {
+                followerId: followerId,
+                followingId: newFollow.followingId
+            }
+        });
+        res.json({"followers": followingRelation});
+    }
 }));
 
 //add the delete

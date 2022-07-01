@@ -43,7 +43,6 @@ function EditPost({post}){
             User
         }
         setErrors([]);
-        // console.log(`handleSubmit here ${payload}`)
         await dispatch(updatePost(postId,payload)).then(()=>dispatch(loadSinglePost(postId)));
                 //waiting for it to completely complete before doing anything
     }

@@ -60,7 +60,7 @@ function SinglePost(){
                 <div className="postContainer">
                     <div className="userNamesContainer">
                     <img className="userAvatar" src={post[postId].User.avatarUrl} alt="avatar"></img>
-                        {post[postId].User.username}
+                        <Link to={`/users/${post[postId].User.id}`} style={{color:'black', textDecoration: 'none'}}>{post[postId].User.username}</Link>
                     </div>
                     <h1>SinglePost {post[postId].User.username}</h1>
                     <h3>{post[postId].User.username}</h3>
@@ -71,12 +71,12 @@ function SinglePost(){
                     : <>{currentUser.id===post[postId].authorId ?
                         <div className='editOptions'>
                             {/*want wo make it a side bar??*/}
-                        <button id='edit-post' onClick={setOpen} class='smallEditButtons' name='edit-toggle'>Edit</button> 
+                        <button id='edit-post' onClick={setOpen} className='smallEditButtons' name='edit-toggle'>Edit</button> 
                             {openEdit
                             ?  <EditPost post= {post[postId]} />
                             :  <></>
                             }
-                            <button class='smallEditButtons' onClick={handleDelete}>Delete</button>
+                            <button className='smallEditButtons' onClick={handleDelete}>Delete</button>
                         </div>
                         :<></>
                     }

@@ -38,9 +38,9 @@ function Navigation({ isLoaded }){
               <Link to="/">
                 <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
               </Link>
-              <div class="rightNav">
+              <div className="rightNav">
                 {!sessionUser &&
-                  <div onClick={()=>setDemoUser()}style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
+                  <div onClick={()=>setDemoUser()} style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
                 }
                   {sessionUser &&
                     <NavLink to="/write" style={ navOptionStyle}> Write it!</NavLink>
