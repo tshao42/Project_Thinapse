@@ -93,7 +93,6 @@ function UserProfile(){
                 <div>
                 {showFollow &&
                 <div>
-                    <div className='statisticsOfUser'>Follow</div>
                     <FollowerOption />
                 </div>
                 }

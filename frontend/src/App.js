@@ -11,6 +11,7 @@ import WriteNew from "./components/WriteNew";
 import NotFound from './components/NotFound'
 import AboutPage from './components/AboutPage'
 import UserProfile from "./components/UserProfile";
+import Feed from "./components/Feed";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route path='/about'>
               <AboutPage />
+            </Route>
+            <Route  exact path='/feed'>
+              <Feed />
             </Route>
             <Route exact path ="/users/:profileId">
               <UserProfile />

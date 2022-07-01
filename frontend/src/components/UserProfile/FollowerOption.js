@@ -44,7 +44,7 @@ function FollowerOption(){
     if (loginUserFollowingProfile && profileUserFollowingLogin){
         relation=(
             <div>
-                <div>Friends</div>
+                <div className='statusBanner'>Friends</div>
                 <button className ="editButtonSubmit" onClick={handleUnfollow}>Unfollow</button>
             </div>
         )
@@ -52,7 +52,7 @@ function FollowerOption(){
     if (loginUserFollowingProfile && !profileUserFollowingLogin){
         relation = (
             <div>
-                <div>Following</div>
+                <div className='statusBanner'>Following</div>
                 <button className ="editButtonSubmit" onClick={handleUnfollow} >Unfollow</button>
             </div>
         )
@@ -62,7 +62,7 @@ function FollowerOption(){
     if (!loginUserFollowingProfile && profileUserFollowingLogin){
         relation = (
             <div>
-                <div>Followback?</div>
+                <div className='statusBanner'>Followback?</div>
                 <button className ="editButtonSubmit" onClick={handleFollow}>Follow</button>
             </div>
         )
@@ -70,7 +70,7 @@ function FollowerOption(){
     if (!loginUserFollowingProfile && !profileUserFollowingLogin){
         relation = (
             <div>
-                <div>Interested? Follow Now</div>
+                <div className='statusBanner'>Interested? Follow Now</div>
                 <button className ="editButtonSubmit" onClick={handleFollow}>Follow</button>
             </div>
         )

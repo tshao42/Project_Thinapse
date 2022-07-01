@@ -7,6 +7,7 @@ router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
 const db = require('../../db/models');
 const { Result } = require('express-validator');
+const Op = require('sequelize');
 
 //================API for home page================
 //GET
@@ -38,7 +39,43 @@ router.get('/users/:userId', asyncHandler(async function(req, res) {
     return res.json(posts);
 }));
 
+router.get('/allfollowing/:userId', asyncHandler(async function(req,res){
+    const userId = req.params.userId;
+    const following = await db.Follow.findAll({
+        raw: true,
+        nest: true,
+        where: {
+            followerId: userId
+        },
+        attributes:['followingId'],
+    });
 
+    const insideFollowingObject=[];
+    for (let i = 0 ; i < following.length; i ++){
+        const { followingId } = following[i];
+        insideFollowingObject.push(followingId);
+    }
+
+    console.log(insideFollowingObject);
+    console.log(Array.isArray(insideFollowingObject));
+
+
+    const feedPost = await db.Post.findAll({
+        where:{
+            authorId:insideFollowingObject
+        },
+        include:[{
+            model: db.User,
+            required: true
+        }]
+    })
+
+
+    // let followings = [];
+    // following.forEach((following)=>followings.push(following[followingId]));
+    return res.json(feedPost);
+
+}));
 //READ
 //this is working
 router.get('/:id(\\d+)',asyncHandler(async function(req, res) {

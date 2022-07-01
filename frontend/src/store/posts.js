@@ -53,6 +53,15 @@ export const getAllPostsByUserId = (userId) => async dispatch =>{
     } else return false;
 }
 
+export const loadFeedPost = (followerId) => async dispatch =>{
+    const response = await csrfFetch(`/api/posts/allfollowing/${followerId}`);
+    if (response.ok){
+        const posts = await response.json();
+        dispatch(loadall(posts));
+    }
+}
+
+
 export const loadSinglePost = (postId) => async dispatch =>{
     const response = await csrfFetch (`/api/posts/${postId}`);
     if (response.ok){
@@ -74,6 +83,8 @@ export const createPost = (payload) => async dispatch =>{
     dispatch(create(post));
     return post;
 };
+
+
 
 
 export const updatePost = (postId,payload) => async dispatch => {
