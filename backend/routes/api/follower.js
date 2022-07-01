@@ -61,17 +61,30 @@ router.get('/user/:userId', asyncHandler(async function(req, res) {
 // }));;
 
 //add the follow
-router.post('/user/:followerId', asyncHandler(async function (req,res){
-    const followerId = req.params.followerId;
-    const followingId = req.body.followingId;
+//we are trying to update to the table
+//however, when we get back, we want to get the updated status
+//of the profile that we are looking at
+router.post('/user/:followingId', asyncHandler(async function (req,res){
+    const followingId = req.params.followingId;
+    const followerId = req.body.followerId;
     //first find if there is existing
     const existing = await db.Follow.findAll({
-        where:{
+        include:[{
+            model: db.User,
+            required:true,
+            as: 'follower'
+            },
+            {
+                model: db.User,
+                required:true,
+                as: 'following'
+            }],
+        where: {
             followerId: followerId,
-            followingId: followingId,
+            followingId: followingId
         }
     });
-    if (existing){
+    if (existing.length>0){
         return res.json({"followers": existing});
     } else{
         const newFollow = await db.Follow.build(req.body);
@@ -88,7 +101,7 @@ router.post('/user/:followerId', asyncHandler(async function (req,res){
                     as: 'following'
                 }],
             where: {
-                followerId: followerId,
+                followerId: newFollow.followerId,
                 followingId: newFollow.followingId
             }
         });
@@ -106,7 +119,7 @@ router.delete('/:followerId/:followingId', asyncHandler(async function(req,res){
             followingId: followingId
         }
     })
-    return res.json({followers:"followerId", following:"followingId"});
+    return res.json({"deletedFollower": followerId, "deletedFollowing": followingId});
 }))
 
 

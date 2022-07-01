@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
+import { createFollow, deleteFollow, checkUserFollow } from '../../store/follow'
 
 
 function FollowerOption(){
+
+    const dispatch = useDispatch();
+    
 
     const { profileId } = useParams();
     const currentUser = useSelector(state=>{
@@ -20,6 +24,18 @@ function FollowerOption(){
     const loginUserFollowingProfile = (userFollower[currentUser.id]!==undefined);
     const profileUserFollowingLogin = (userFollowing[currentUser.id]!==undefined);
 
+    //handling functions
+    //onclick dispatch
+    const handleFollow = async() => {
+        await dispatch(createFollow(currentUser.id, profileId))
+        .then (()=>dispatch(checkUserFollow(profileId)));
+    }
+
+
+    const handleUnfollow = async() => {
+        await dispatch(deleteFollow(currentUser.id, profileId))
+        .then (()=>dispatch(checkUserFollow(profileId)));
+    }
 
     //component conditional
     let relation;
@@ -29,7 +45,7 @@ function FollowerOption(){
         relation=(
             <div>
                 <div>Friends</div>
-                <button onClick={handleFollow}>Unfollow</button>
+                <button className ="editButtonSubmit" onClick={handleUnfollow}>Unfollow</button>
             </div>
         )
     }
@@ -37,7 +53,7 @@ function FollowerOption(){
         relation = (
             <div>
                 <div>Following</div>
-                <button onClick={handleFollow} >Unfollow</button>
+                <button className ="editButtonSubmit" onClick={handleUnfollow} >Unfollow</button>
             </div>
         )
     }
@@ -47,7 +63,7 @@ function FollowerOption(){
         relation = (
             <div>
                 <div>Followback?</div>
-                <button onClick={handleUnfollow}>Follow</button>
+                <button className ="editButtonSubmit" onClick={handleFollow}>Follow</button>
             </div>
         )
     }
@@ -55,7 +71,7 @@ function FollowerOption(){
         relation = (
             <div>
                 <div>Interested? Follow Now</div>
-                <button onClick={handleUnfllow}>Follow</button>
+                <button className ="editButtonSubmit" onClick={handleFollow}>Follow</button>
             </div>
         )
     }
