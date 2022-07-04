@@ -20,7 +20,7 @@
     font-size: 42px;
     font-family:'forma-djr-text';
     font-weight: bolder;
-    color: #03045E;
+    color: #8860D0;
 }
 
 .overallProfileContainer{
@@ -29,7 +29,7 @@
 }
 
 .rightHalfProfile{
-    background-color: #03045E;
+    background-color: #8860D0;
     /* margin-top: 5px; */
     width: 30%;
     margin-left: 5%;
@@ -48,7 +48,7 @@
     font-weight:bolder;
     text-align: center;
     padding-bottom: 10%;
-    color: CAF0F8;
+    color: 5AB9EA;
 }
 
 #profilePageAvatar{
@@ -78,4 +78,14 @@
     font-size: 20px;
     font-family: forma-djr-text;
     font-weight: bold;
+}
+
+.statusBanner2{
+    color:antiquewhite;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight:lighter;
+    font-family: forma-djr-text;
+    font-size: 12px;
+    
 }

@@ -10,7 +10,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
 
-  const navOptionStyle={textDecoration: 'none',color:'#CAF0F8'};
+  const navOptionStyle={textDecoration: 'none',color:'#5AB9EA'};
 
 
   let sessionLinks;
@@ -36,7 +36,7 @@ function Navigation({ isLoaded }){
         <div className="navBar">
           <ul className="navBarItems">
               <Link to="/">
-                <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
+              <img src="https://i.imgur.com/BSLlF5y.png"  id="logo" alt="logo" />
               </Link>
               <div className="rightNav">
                 {!sessionUser &&

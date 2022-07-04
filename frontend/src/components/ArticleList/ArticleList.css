@@ -3,8 +3,8 @@
     display: flex;
     height:480px;
     justify-content: space-between;
-    background-color: #03045E;
-    border-bottom: 1px solid #CAF0F8;
+    background-color: #8860D0;
+    border-bottom: 1px solid #5AB9EA;
 }
 
 #slogan{
@@ -15,11 +15,11 @@
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    color: #CAF0F8;
+    color: #C1C8E4;
 }
 #slogan>#sub-slogan{
     font-size: 20px;
-    color:#90E0EF;
+    color:#c1c8e4;
     font-family:'forma-djr-text';
     width: 100%;
 }
@@ -46,10 +46,10 @@
     font-size:16px;
     margin-right:20px;
     padding-bottom: 20px;
-    color:#03045E;
+    color:#5AB9EA;
 }
 #subdivisionTitle{
-    color:#03045E
+    color: #5AB9EA;
 }
 
 .latestDisplay{

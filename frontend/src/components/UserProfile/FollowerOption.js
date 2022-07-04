@@ -78,8 +78,12 @@ function FollowerOption(){
     console.log(`${loginUserFollowingProfile}, ${profileUserFollowingLogin}`)
     
     
+    const followerCount = Object.keys(userFollower).length;
+    const followingCount = Object.keys(userFollowing).length;
     return(
         <div>
+            <div className='statusBanner2'>Followed by {followerCount} People</div>
+            <div className='statusBanner2'>Following {followingCount} People</div>
             {relation}
         </div>
     )

@@ -29,23 +29,26 @@ function Feed(){
 
     const hydrating = async()=>{
         await dispatch(checkUserFollow(currentUser.id))
-        .then(()=>(loadFeedPost(currentUser.id)));
+        .then(()=>(dispatch(loadFeedPost(currentUser.id))));
     }
     const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
     return(
         <div>
             {currentUser &&
             <div>
+                <div>Latest posts from your following users...</div>
+                <div className='latestDisplay'>
                 {Object.values(postDepo).map(({id,title,User,body})=>(
                     <div className="individualPost">
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            {User.username}
+                            <Link to={`/users/${User.id}`} style={{ color: 'black', textDecoration: 'none' }}>{User.username}</Link>
                         </div>
                         <Link to={`/posts/${id}`} style={redirectStyle}>{title}</Link>
                         <p className="previewText">{body}</p>
                     </div>
                 ))}
+            </div>
             </div>
             }
             {!currentUser &&

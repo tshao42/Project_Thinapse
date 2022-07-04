@@ -1,8 +1,8 @@
 .navBar{
     padding-top:10px;
     height:70px;
-    background-color: #0077B6;
-    border-bottom: 1px solid #CAF0F8;
+    background-color: #5680E9;
+    border-bottom: 1px solid #5AB9EA;
 }
 .navBarItems{
     padding-left: 10%;
@@ -17,7 +17,9 @@
 }
 
 #logo{
-    height:36px;
+    margin: -5px;
+    margin-left: -10px;
+    height:40px;
 }
 
 #fakeButton{
@@ -52,14 +54,14 @@
 
 #log-out{
     cursor:pointer;
-    color:#CAF0F8;
+    color:#5AB9EA;
 
 }
 .avatarContainer{
     margin-top:-8px;
 }
 #usernamedisplay{
-    color:#CAF0F8;
+    color:#5AB9EA;
     padding-right:10px;
     /* margin-top:-20px; */
     font-size: 15px;

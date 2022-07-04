@@ -19,7 +19,8 @@ function ArticleList(){
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])
-    const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
+    const redirectStyle = {
+        'fontSize': '19px', 'textDecoration': 'none', 'color': '#5AB9EA'};
     return(
         <div>
             <div className="frontPage">
@@ -36,7 +37,7 @@ function ArticleList(){
                     <div className="individualPost">
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            {User.username}
+                            <Link to={`/users/${User.id}`} style={{ color: '#5AB9EA', textDecoration: 'none' }}>{User.username}</Link>
                         </div>
                         <NavLink to={`/posts/${id}`} style={redirectStyle}>{title}</NavLink>
                         <p className="previewText">{body}</p>

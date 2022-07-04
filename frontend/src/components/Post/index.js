@@ -62,8 +62,6 @@ function SinglePost(){
                     <img className="userAvatar" src={post[postId].User.avatarUrl} alt="avatar"></img>
                         <Link to={`/users/${post[postId].User.id}`} style={{color:'black', textDecoration: 'none'}}>{post[postId].User.username}</Link>
                     </div>
-                    <h1>SinglePost {post[postId].User.username}</h1>
-                    <h3>{post[postId].User.username}</h3>
                     <h2>{post[postId].title}</h2>
                     <p className="textBody">{post[postId].body}</p>
                     {!currentUser
