@@ -1,6 +1,6 @@
-# ThoughtBubble React/Redux
-- Live on heroku at [ThoughtBubble](https://mediumthoughtbubble.herokuapp.com/)
-- Github Repository available at https://github.com/tshao42/ThoughtBubble_React_Redux
+# Thinapse 
+- Live on heroku at [Thinapse](https://thinapse.herokuapp.com/)
+- Github Repository available at https://github.com/tshao42/Project_Thinapse
 
 # About
 
@@ -8,7 +8,7 @@
 
 # Run it on local machine:
 
-1. Clone the project to your local machine here: https://github.com/tshao42/ThoughtBubble_React_Redux
+1. Clone the project to your local machine here: https://github.com/tshao42/Project_Thinapse
 2. There are two folders under root directory. Navigate into `/backend` and `/frontend` directories and run `npm install`.
 3. In `backend` directory, create `.env` file according to the information on `.env.example`
 4. Create the user using postgres CLI. Make sure to give it `CREATEDB` privilege.
@@ -38,9 +38,9 @@
 - Likes
 - Tags (Topic & Categories)
 - Likes
-- Followers
-- Feed
-- User Profile Page (Following, Liked, and Posts)
+- Followers (Improved Version)
+- Feed (Improved Version)
+- User Profile Page (Liked)
 - AW3 Upload (allow more contents)
 
 # Technical Difficulties
