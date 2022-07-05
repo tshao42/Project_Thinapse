@@ -33,12 +33,12 @@
     /* margin-top: 5px; */
     width: 30%;
     margin-left: 5%;
-    /* 
+    /*
     margin-right: 20%; */
     /* height: 50%;
     border-radius: 10px;
     padding-bottom: 5%; */
-    
+
 }
 
 #userNameLargerDisplay{
@@ -48,7 +48,7 @@
     font-weight:bolder;
     text-align: center;
     padding-bottom: 10%;
-    color: 5AB9EA;
+    color: #31293F;
 }
 
 #profilePageAvatar{
@@ -87,5 +87,5 @@
     font-weight:lighter;
     font-family: forma-djr-text;
     font-size: 12px;
-    
+
 }
