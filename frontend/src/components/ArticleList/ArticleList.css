@@ -10,14 +10,16 @@
 #slogan{
     padding-top: 5%;
     padding-left: 10%;
-    font-size:72px;
-    font-family: 'hedley-new-web';
+    margin-bottom: 10px;
+    font-size:67px;
+    font-family: hedley-new-web;
     display: flex;
     flex-wrap: wrap;
     width: 50%;
     color: white;
 }
 #slogan>#sub-slogan{
+    padding-top: 20px;
     font-size: 20px;
     color:white;
     font-family:'forma-djr-text';
@@ -32,7 +34,7 @@
     padding-left: 10%;
     padding-right:20%;
     padding-top: 5%;
-    font-family:'hedley-new-web';
+    font-family:hedley-new-web;
 
 }
 
@@ -50,6 +52,11 @@
 }
 #subdivisionTitle{
     color: #554D74;
+    padding-left:3%
+}
+#subdivisionTitle:link {
+    color: #554D74;
+    padding-left: 3%
 }
 
 .latestDisplay{

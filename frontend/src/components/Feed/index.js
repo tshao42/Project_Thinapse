@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { checkUserFollow } from '../../store/follow'
 import { getAllPostsByUserId, loadFeedPost } from '../../store/posts';
+import './Feed.css'
 
 
 
@@ -31,13 +32,13 @@ function Feed(){
         await dispatch(checkUserFollow(currentUser.id))
         .then(()=>(dispatch(loadFeedPost(currentUser.id))));
     }
-    const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
+    const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': '#31293F'};
     return(
         <div>
             {currentUser &&
             <div>
-                <div>Latest posts from your following users...</div>
-                <div className='latestDisplay'>
+                <div id='feedTitle'>Latest posts from your following users...</div>
+                <div className='postContainer'>
                 {Object.values(postDepo).map(({id,title,User,body})=>(
                     <div className="individualPost">
                         <div className="userNamesContainer">

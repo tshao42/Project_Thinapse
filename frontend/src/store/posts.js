@@ -57,7 +57,7 @@ export const loadFeedPost = (followerId) => async dispatch =>{
     const response = await csrfFetch(`/api/posts/allfollowing/${followerId}`);
     if (response.ok){
         const posts = await response.json();
-        dispatch(loadall(posts));
+        dispatch(loadalluser(posts));
     }
 }
 

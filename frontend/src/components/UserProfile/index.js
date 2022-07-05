@@ -63,7 +63,7 @@ function UserProfile(){
         then (()=>dispatch(loadOneUser(profileId)))
         .then (()=>dispatch(checkUserFollow(profileId)))
         .then(()=>setLoaded(true))
-        .then(()=>setShowFollow(currentUser&&(currentUser.id!==parseInt(profileId))));
+        .then(()=>setShowFollow(currentUser));
     }
 
     const numberOfPosts = Object.keys(allPosts).length;
@@ -90,7 +90,7 @@ function UserProfile(){
             <div className='rightHalfProfile'>
                 <div id = 'userNameLargerDisplay'>{ownerOfProfile[profileId].username}</div>
                 <img id='profilePageAvatar' src={`${ownerOfProfile[profileId].avatarUrl}`} alt='avatar' />
-                <div className='statisticsOfUser'>{numberOfPosts} posts so far on ThoughtBubble</div>
+                <div className='statisticsOfUser'>{numberOfPosts} posts so far on Thinapse</div>
                 {currentUser &&
                 <div>
                 {showFollow &&

@@ -20,7 +20,7 @@ function ArticleList(){
         dispatch(getAllPosts());
     },[dispatch])
     const redirectStyle = {
-        'fontSize': '19px', 'textDecoration': 'none', 'color': '#D3D9E9'};
+        'fontSize': '19px', 'textDecoration': 'none', 'color': '#554D74'};
     return(
         <div>
             <div className="frontPage">

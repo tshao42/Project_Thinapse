@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { createFollow, deleteFollow, checkUserFollow } from '../../store/follow'
+import { loadFeedPost } from '../../store/posts'
 
 
 function FollowerOption(){
@@ -41,6 +42,12 @@ function FollowerOption(){
     let relation;
     //following relations
     //only provide unfollow option
+
+    if (currentUser.id == profileId){
+        relation=(
+            <></>
+        )
+    } else{
     if (loginUserFollowingProfile && profileUserFollowingLogin){
         relation=(
             <div>
@@ -75,7 +82,7 @@ function FollowerOption(){
             </div>
         )
     }
-    console.log(`${loginUserFollowingProfile}, ${profileUserFollowingLogin}`)
+}
     
     
     const followerCount = Object.keys(userFollower).length;

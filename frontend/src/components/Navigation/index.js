@@ -43,7 +43,10 @@ function Navigation({ isLoaded }){
                   <div onClick={()=>setDemoUser()} style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
                 }
                   {sessionUser &&
-                    <NavLink to="/write" style={ navOptionStyle}> Write it!</NavLink>
+                  <div>
+                    <NavLink to="/feed" style={navOptionStyle} id='timeline'> Timeline  </NavLink>
+                    <NavLink to="/write" style={ navOptionStyle}>New Post</NavLink>
+                  </div>
                   }
                   {!sessionUser &&isLoaded
                   ? sessionLinks
