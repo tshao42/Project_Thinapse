@@ -4,7 +4,7 @@
 
 # About
 
-- ThoughtBubble Medium-like Web Application. The goal of the website is to create a user-friendly User Interface for light blog posting. Users are able to create their own blog posts, edit, and delete them, and they are also able to comment on other people’s posts.
+- Thinapse is a Medium-like Web Application. The goal of the website is to create a user-friendly User Interface for light blog posting. Users are able to create their own blog posts, edit, and delete them, and they are also able to comment on other people’s posts.
 
 # Run it on local machine:
 
