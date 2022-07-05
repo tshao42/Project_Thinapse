@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './AboutPage.css'
 
 function AboutInfo(){
@@ -23,10 +22,13 @@ function AboutInfo(){
                     <img className='devicons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" />
                 </div>
             <div>Github Repository:
-                    <a href='https://github.com/tshao42/ThoughtBubble_React_Redux' style= {{textDecoration:'none', color:'#5680E9'}}>{`   `}ThoughtBubble React/Redux</a>
+                    <a href='https://github.com/tshao42/ThoughtBubble_React_Redux' style= {{textDecoration:'none', color:'#796EA8'}}>{`   `}ThoughtBubble React/Redux</a>
             </div>
             <div>LinkedIn Profile:
-                <a href='https://www.linkedin.com/in/tianyishao42' style= {{textDecoration:'none', color:'#5680E9'}}>{`   `} My LinkedIn Profile</a>
+                    <a href='https://www.linkedin.com/in/tianyishao42' style={{ textDecoration: 'none', color:'#796EA8'}}>{`   `} My LinkedIn Profile</a>
+            </div>
+            <div>
+                All used pictures, icons, fonts are licensed from Adobe Creative Cloud Subscription.
             </div>
         </div>
         </div>

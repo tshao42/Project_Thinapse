@@ -20,13 +20,13 @@ function ArticleList(){
         dispatch(getAllPosts());
     },[dispatch])
     const redirectStyle = {
-        'fontSize': '19px', 'textDecoration': 'none', 'color': '#5AB9EA'};
+        'fontSize': '19px', 'textDecoration': 'none', 'color': '#D3D9E9'};
     return(
         <div>
             <div className="frontPage">
-                <div id="slogan">Think. React.<br />Now.
+                <div id="slogan">Join the conversation.<br />Now.
                     <p><br></br></p>
-                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...</div>
+                    <div id="sub-Slogan">Leave Thoughts In Plain Text, No Strings Attached</div>
                 </div>
                 <img src="https://i.imgur.com/FCj4MH1.png" id="frontPagePic" alt="node" />
             </div>
@@ -37,7 +37,7 @@ function ArticleList(){
                     <div className="individualPost">
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            <Link to={`/users/${User.id}`} style={{ color: '#5AB9EA', textDecoration: 'none' }}>{User.username}</Link>
+                            <Link to={`/users/${User.id}`} style={{ color: '#554D74', textDecoration: 'none' }}>{User.username}</Link>
                         </div>
                         <NavLink to={`/posts/${id}`} style={redirectStyle}>{title}</NavLink>
                         <p className="previewText">{body}</p>

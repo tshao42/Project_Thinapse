@@ -9,11 +9,12 @@
     resize: none;
     font-family:'forma-djr-text';
     text-overflow: wrapping;
-    margin-bottom:30px;
+    background-color: #554D74;
+    color: #d3d9e9;
 }
 
 
 #commentPromptTitle{
-    color:#5680E9;
+    color:#554D74;
     font-size:25px;
 }

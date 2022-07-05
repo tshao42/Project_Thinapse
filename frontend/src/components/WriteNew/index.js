@@ -63,7 +63,7 @@ const notFoundStyle={textDecoration: 'none',color:'black', fontFamily:'forma-djr
         <div className='pageContainer'>
             {currentUser&&
             <div>
-                <h1 id='writePageTitle'>Creating your thought bubble...</h1>
+                <h1 id='writePageTitle'>Write something here...</h1>
                 <br/>
                 <form onSubmit={handleSubmit} id='writeNewForm'>
                     <textarea type="string"

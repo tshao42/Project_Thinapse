@@ -1,8 +1,8 @@
 .navBar{
     padding-top:10px;
     height:70px;
-    background-color: #5680E9;
-    border-bottom: 1px solid #5AB9EA;
+    background-color: #31293F;
+    border-bottom: 1px solid #D3D9E9;
 }
 .navBarItems{
     padding-left: 10%;
@@ -17,9 +17,9 @@
 }
 
 #logo{
-    margin: -5px;
+    margin: -20px;
     margin-left: -10px;
-    height:40px;
+    height:70px;
 }
 
 #fakeButton{
@@ -30,19 +30,19 @@
     display: flex;
 
     padding-right:8%;
-    font-family: 'voguing';
+    font-family: 'hedley-new-web';
     margin-top: 3px;
     text-decoration: none;
 
     font-size:20px;
-    color:#2774AE;
+    color:#D3D9E9;
     gap: 30px;
     
 }
 
 .rightNav link{
     text-decoration: none;
-    color:#2774AE;
+    color:#D3D9E9;
 }
 
 
@@ -54,14 +54,14 @@
 
 #log-out{
     cursor:pointer;
-    color:#5AB9EA;
+    color:#D3D9E9;
 
 }
 .avatarContainer{
     margin-top:-8px;
 }
 #usernamedisplay{
-    color:#5AB9EA;
+    color:#D3D9E9;
     padding-right:10px;
     /* margin-top:-20px; */
     font-size: 15px;

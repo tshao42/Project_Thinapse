@@ -40,7 +40,7 @@ function CommentDisplay({currentUserId}){
                     <div>
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            {User.username}
+                            <Link to={`/users/${User.id}`} style={{textDecoration:'none'}}>{User.username}</Link>
                         </div>
                         <p className="textBody">{body}</p>
                         {currentUserId===User.id

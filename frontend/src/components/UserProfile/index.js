@@ -75,9 +75,11 @@ function UserProfile(){
             <div className='leftHalfProfile'>
                 <div className='profilePagePostContainer'>
                     <ol className='singleUserPostFeed'>
-                    {Object.values(allPosts).map(({title,body})=>(
+                    {Object.values(allPosts).map(({id, title,body})=>(
                         <div className='individualPost'>
-                            <h1>{title}</h1>
+                            <Link to={`/posts/${id}`} style={{textDecoration: 'none'}}>
+                                <h1>{title}</h1>
+                            </Link>
                             <p>{body}</p>
                         </div>
                     ))}
