@@ -1,0 +1,91 @@
+.profilePagePostContainer{
+    margin-left: 8%;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.leftHalfProfile{
+    padding-top: 10px;
+    width: 70%;
+}
+
+.singleUserPostFeed{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#postBySingleTitle{
+    font-size: 42px;
+    font-family:'forma-djr-text';
+    font-weight: bolder;
+    color: #8860D0;
+}
+
+.overallProfileContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.rightHalfProfile{
+    background-color: #8860D0;
+    /* margin-top: 5px; */
+    width: 30%;
+    margin-left: 5%;
+    /*
+    margin-right: 20%; */
+    /* height: 50%;
+    border-radius: 10px;
+    padding-bottom: 5%; */
+
+}
+
+#userNameLargerDisplay{
+    padding-top: 10%;
+    font-size: 30px;
+    font-family:'forma-djr-text';
+    font-weight:bolder;
+    text-align: center;
+    padding-bottom: 10%;
+    color: #31293F;
+}
+
+#profilePageAvatar{
+    vertical-align: middle;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.statisticsOfUser{
+    margin-top: 5%;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-family:'forma-djr-text';
+    font-weight:bold;
+    margin-bottom: 10%;
+    color: white;
+}
+
+.statusBanner{
+    color:white;
+    text-align:center;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-family: forma-djr-text;
+    font-weight: bold;
+}
+
+.statusBanner2{
+    color:antiquewhite;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight:lighter;
+    font-family: forma-djr-text;
+    font-size: 12px;
+
+}

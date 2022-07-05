@@ -5,10 +5,15 @@ export const LOAD = "posts/LOAD";
 export const REMOVE = "posts/REMOVE";
 export const CREATE = "posts/CREATE";
 export const UPDATE = "posts/LOAD";
-
+export const LOAD_USER_POSTS = "posts/LOAD_USER_POSTS"
 const loadall = (posts)=>({
     type: LOAD_POSTS,
     posts   //this is an array
+})
+
+const loadalluser = (posts)=>({
+    type: LOAD_USER_POSTS,
+    posts
 })
 
 const load = (post)=>({
@@ -39,6 +44,24 @@ export const getAllPosts =() => async dispatch => {
     }
 }
 
+//extra
+export const getAllPostsByUserId = (userId) => async dispatch =>{
+    const response = await csrfFetch(`/api/posts/users/${userId}`);
+    if (response.ok){
+        const posts = await response.json();
+        dispatch(loadalluser(posts));
+    } else return false;
+}
+
+export const loadFeedPost = (followerId) => async dispatch =>{
+    const response = await csrfFetch(`/api/posts/allfollowing/${followerId}`);
+    if (response.ok){
+        const posts = await response.json();
+        dispatch(loadalluser(posts));
+    }
+}
+
+
 export const loadSinglePost = (postId) => async dispatch =>{
     const response = await csrfFetch (`/api/posts/${postId}`);
     if (response.ok){
@@ -60,6 +83,8 @@ export const createPost = (payload) => async dispatch =>{
     dispatch(create(post));
     return post;
 };
+
+
 
 
 export const updatePost = (postId,payload) => async dispatch => {
@@ -98,6 +123,11 @@ const postsReducer = (state = initialState, action) => {
         action.posts.forEach(
             (post) => (loadedPosts.posts[post.id]=post));
         return loadedPosts;
+      case LOAD_USER_POSTS:
+        const loadedUserPosts = {posts:{}};
+        action.posts.forEach(
+            (post) => (loadedUserPosts.posts[post.id]=post));
+        return loadedUserPosts;
       case REMOVE:
         const newState = { ...state };
         delete newState.posts[action.postId];

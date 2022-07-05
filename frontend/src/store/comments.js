@@ -10,6 +10,11 @@ const loadall = (comments, postId)=>({
     comments,
     postId
 })
+const loadDatabaseByUser = (comments, userId)=>({
+    type: LOAD_COMMENTS,
+    comments,
+    userId
+});
 const create = (comment) => ({
     type: CREATE,
     comment
@@ -31,10 +36,15 @@ export const getAllComments = (postId) => async dispatch => {
     }
 }
 
+export const getAllCommentsInDatabaseByUser = (userId) => async dispatch =>{
+    const response = await csrfFetch(`/api/comments`);
+    if (response.ok){
+        const comments = await response.json();
+        dispatch(loadDatabaseByUser(comments, userId))
+    }
+}
 export const createComment = (payload) => async dispatch =>{
-    // console.log(`currently hitting the route /api/comments`)
     const {userId, postId, body} = payload;
-    // console.log(`the Payload is: ${userId} ${postId} ${body}`);
     const response = await csrfFetch(`/api/comments`,{
         method: 'POST',
         headers:{

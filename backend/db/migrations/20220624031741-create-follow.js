@@ -8,15 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      followingId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'Users'}
+        references: {model: 'Users',
+        key: 'id'}
       },
       followerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'Users'}
+        references: {model: 'Users',
+        key: 'id'}
       },
       createdAt: {
         allowNull: false,
@@ -28,9 +30,17 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date()
       }
-    });
+    })
+    .then(()=>queryInterface.addConstraint('Follows',{
+      fields:['followingId', 'followerId'],
+      type: 'unique',
+      name: 'onlyOneAssociation'
+    }));
+    
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Follows');
+    return queryInterface.dropTable('Follows')
+    // .then(()=>queryInterface.removeConstraint('Follows', 'onelyOneAssociation'));
   }
 };
+

@@ -7,6 +7,7 @@ router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
 const db = require('../../db/models');
 const { Result } = require('express-validator');
+const Op = require('sequelize');
 
 //================API for home page================
 //GET
@@ -21,11 +22,60 @@ router.get('/', asyncHandler(async function(_req, res) {
             required:false
         }]
     })
-    console.log(posts);
     return res.json(posts);
 }));
 
+router.get('/users/:userId', asyncHandler(async function(req, res) {
+    const userId = req.params.userId;
+    const posts = await db.Post.findAll({
+        where:{
+            authorId: userId
+        },
+        include:[{
+            model: db.User,
+            required:false
+        }]
+    })
+    return res.json(posts);
+}));
 
+router.get('/allfollowing/:userId', asyncHandler(async function(req,res){
+    const userId = req.params.userId;
+    const following = await db.Follow.findAll({
+        raw: true,
+        nest: true,
+        where: {
+            followerId: userId
+        },
+        attributes:['followingId'],
+    });
+
+    const insideFollowingObject=[];
+    for (let i = 0 ; i < following.length; i ++){
+        const { followingId } = following[i];
+        insideFollowingObject.push(followingId);
+    }
+
+    console.log(insideFollowingObject);
+    console.log(Array.isArray(insideFollowingObject));
+
+
+    const feedPost = await db.Post.findAll({
+        where:{
+            authorId:insideFollowingObject
+        },
+        include:[{
+            model: db.User,
+            required: true
+        }]
+    })
+
+
+    // let followings = [];
+    // following.forEach((following)=>followings.push(following[followingId]));
+    return res.json(feedPost);
+
+}));
 //READ
 //this is working
 router.get('/:id(\\d+)',asyncHandler(async function(req, res) {
@@ -79,10 +129,8 @@ router.put(
         // const ownId = currentUser.id;
 
         const postId = req.params.id;
-        // console.log(`postId at line 81 is ${postId}`)
         const post = await db.Post.findByPk(postId)
         await post.update(req.body);
-        console.log(`updated post is ${post}`);
         const updatedPost = await db.Post.findByPk(postId,{
             include:[{
                 model: db.User,

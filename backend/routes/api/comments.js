@@ -14,11 +14,24 @@ router.get('',asyncHandler(async function(req, res){
 
 //=======comments===================
 
+//for getting by userId
 
+router.get('/byusers/:userId', asyncHandler(async function(req,res){
+    const userId = req.params.userId;
+    const posts = await db.Comment.findAll({
+        where:{
+            authorId: userId
+        },
+        include: [{
+            model: db.User,
+            required: false
+        }]
+    });
+    return res.json(posts);
+}));
 //READ
 router.get('/forpost/:id(\\d+)',asyncHandler(async function(req, res) {
     const postId = req.params.id;
-    console.log(`from get comment route ${postId}`);
     const comments = await db.Comment.findAll({
         where:{
             postId: postId
@@ -47,7 +60,6 @@ router.post('/',asyncHandler(
     // }
     const newComment = await db.Comment.create(req.body);
     const savedComment = await newComment.save();
-    console.log(`what we created: ${savedComment.toJSON()}`)
     return res.json(savedComment);
     }
 ));

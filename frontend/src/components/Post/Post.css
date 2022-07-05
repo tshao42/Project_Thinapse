@@ -1,6 +1,6 @@
 .postContainer{
     width: 60%;
-    padding-top:10%;
+    padding-top:2%;
     padding-left: 10%;
     padding-right: 10%;
     font-family: 'forma-djr-text';
@@ -16,9 +16,9 @@
 }
 
 .smallEditButtons{
-    background-color: #0077B6;
-    font-family:'voguing';
-    color:#CAF0F8;
+    background-color: #31293F;
+    font-family:hedley-new-web;
+    color:#D3D9E9;
     border-radius: 4px;
     width: 10%;
     height: 2%;
@@ -29,5 +29,5 @@
 
 .smallEditButtons:hover{
     cursor: pointer;
-    background-color: #03045E;
+    background-color: #8860D0;
 }

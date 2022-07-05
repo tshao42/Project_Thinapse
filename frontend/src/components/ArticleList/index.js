@@ -19,32 +19,30 @@ function ArticleList(){
     useEffect(() => {
         dispatch(getAllPosts());
     },[dispatch])
-    const redirectStyle={'fontSize':'19px', 'textDecoration': 'none', 'color': 'black'};
+    const redirectStyle = {
+        'fontSize': '19px', 'textDecoration': 'none', 'color': '#554D74'};
     return(
         <div>
-            {/* {console.log(`Are we getting all posts? ${allPosts}`)} */}
             <div className="frontPage">
-                <div id="slogan">Think. React.<br />Now.
+                <div id="slogan">Join the conversation.<br />Now.
                     <p><br></br></p>
-                    <div id="sub-Slogan">Catalyze the next thoughts chain reaction...</div>
+                    <div id="sub-Slogan">Leave Thoughts In Plain Text, No Strings Attached</div>
                 </div>
                 <img src="https://i.imgur.com/FCj4MH1.png" id="frontPagePic" alt="node" />
             </div>
             <div className="postListContainer">
             <h3 id="subdivisionTitle">What others are thinking...</h3>
-            <ul class='latestDisplay'>
+            <ul className='latestDisplay'>
                 {Object.values(allPosts).map(({id,title,User,body})=>(
                     <div className="individualPost">
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            {User.username}
+                            <Link to={`/users/${User.id}`} style={{ color: '#554D74', textDecoration: 'none' }}>{User.username}</Link>
                         </div>
                         <NavLink to={`/posts/${id}`} style={redirectStyle}>{title}</NavLink>
                         <p className="previewText">{body}</p>
-                        {/* {console.log('in cycle')} */}
                     </div>
                 ))}
-            {/* {console.log('out of cycle')} */}
             </ul>
             </div>
         </div>

@@ -8,7 +8,6 @@ import './CommentDisplay.css';
 
 function CommentDisplay({currentUserId}){
     const {postId} = useParams();
-    // console.log(`this is the postId: ${postId}`)
     const allComments = useSelector(state => {
         return state.comments.comments;
     });
@@ -41,12 +40,9 @@ function CommentDisplay({currentUserId}){
                     <div>
                         <div className="userNamesContainer">
                             <img className="userAvatar" src={User.avatarUrl} alt="avatar"></img>
-                            {User.username}
+                            <Link to={`/users/${User.id}`} style={{textDecoration:'none'}}>{User.username}</Link>
                         </div>
                         <p className="textBody">{body}</p>
-                        {/* {console.log('in cycle')}
-                        {console.log(`${id} no bracket`)}
-                        {console.log((`${{id}} with bracket`))} */}
                         {currentUserId===User.id
                             ? 
                             <div className="editOptions" id="commenteditOptions">
@@ -56,7 +52,6 @@ function CommentDisplay({currentUserId}){
                                 onClick={
                                     async(e)=>{
                                         e.preventDefault();
-                                        // console.log(`deleting at location... ${id}`)
                                         await dispatch(deleteComment(id)).then(()=>dispatch(getAllComments(postId)));
                                     }
                                 }>Delete</button>
@@ -66,7 +61,6 @@ function CommentDisplay({currentUserId}){
                                 onClick={
                                     setOpenEditComment
                                 }>Edit
-                                {console.log(openEdit)}
                                 </button>
                                 {openEdit
                                 ? <EditComment comment={allComments[id]} setOpenEdit={setOpenEdit}/>

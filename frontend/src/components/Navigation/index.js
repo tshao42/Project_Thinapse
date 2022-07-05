@@ -10,7 +10,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
 
-  const navOptionStyle={textDecoration: 'none',color:'#CAF0F8'};
+  const navOptionStyle={textDecoration: 'none',color:'#D3D9E9'};
 
 
   let sessionLinks;
@@ -32,31 +32,36 @@ function Navigation({ isLoaded }){
   }
   return (
     <div>
-      <div className="navBar">
-        <ul className="navBarItems">
-            <Link to="/">
-              <img src="https://i.imgur.com/5H7fNiL.png"  id="logo" alt="logo" />
-            </Link>
-            <div class="rightNav">
-              {!sessionUser &&
-                <div onClick={()=>setDemoUser()}style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
-              }
-                {sessionUser &&
-                  <NavLink to="/write" style={ navOptionStyle}> Write it!</NavLink>
+      <div>
+        <div className="navBar">
+          <ul className="navBarItems">
+              <Link to="/">
+              <img src="https://i.imgur.com/ttHB3Or.png"  id="logo" alt="logo" />
+              </Link>
+              <div className="rightNav">
+                {!sessionUser &&
+                  <div onClick={()=>setDemoUser()} style= { navOptionStyle} id="fakeButton"> Try Writing!</div>
                 }
-                {!sessionUser &&isLoaded
-                ? sessionLinks
+                  {sessionUser &&
+                  <div>
+                    <NavLink to="/feed" style={navOptionStyle} id='timeline'> Timeline  </NavLink>
+                    <NavLink to="/write" style={ navOptionStyle}>New Post</NavLink>
+                  </div>
+                  }
+                  {!sessionUser &&isLoaded
+                  ? sessionLinks
+                  :<></>
+                  }
+                <NavLink to="/about" style = {navOptionStyle}>About Us</NavLink>
+                {sessionUser && isLoaded
+                ?<div>
+                  {sessionLinks}
+                </div>
                 :<></>
                 }
-              <NavLink to="/about" style = {navOptionStyle}>About Us</NavLink>
-              {sessionUser && isLoaded
-              ?<div>
-                {sessionLinks}
               </div>
-              :<></>
-              }
-            </div>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -3,23 +3,25 @@
     display: flex;
     height:480px;
     justify-content: space-between;
-    background-color: #03045E;
-    border-bottom: 1px solid #CAF0F8;
+    background-color: #554D74;
+    border-bottom: 1px solid #554D74;
 }
 
 #slogan{
     padding-top: 5%;
     padding-left: 10%;
-    font-size:72px;
-    font-family: 'voguing';
+    margin-bottom: 10px;
+    font-size:67px;
+    font-family: hedley-new-web;
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    color: #CAF0F8;
+    color: white;
 }
 #slogan>#sub-slogan{
+    padding-top: 20px;
     font-size: 20px;
-    color:#90E0EF;
+    color:white;
     font-family:'forma-djr-text';
     width: 100%;
 }
@@ -32,7 +34,7 @@
     padding-left: 10%;
     padding-right:20%;
     padding-top: 5%;
-    font-family:'voguing';
+    font-family:hedley-new-web;
 
 }
 
@@ -43,13 +45,18 @@
     
 }
 .userNamesContainer{
-    font-size:16px;
+    font-size:19px;
     margin-right:20px;
     padding-bottom: 20px;
-    color:#03045E;
+    color:#554D74;
 }
 #subdivisionTitle{
-    color:#03045E
+    color: #554D74;
+    padding-left:3%
+}
+#subdivisionTitle:link {
+    color: #554D74;
+    padding-left: 3%
 }
 
 .latestDisplay{
@@ -66,7 +73,7 @@
 }
 
 .previewText{
-    color:gray;
+    color:#796EA8;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

@@ -1,13 +1,14 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Follow = sequelize.define('Follow', {
-    userId: DataTypes.INTEGER,
+    followingId: DataTypes.INTEGER,
     followerId: DataTypes.INTEGER
   }, {});
   Follow.associate = function(models) {
     // associations can be defined here
-    Follow.belongsTo(models.User, { as: 'follower', foreignKey: 'followerId'});
-    Follow.belongsTo(models.User, { as: 'followed', foreignKey: 'userId'});
+    Follow.belongsTo(models.User, { as: 'follower', onDelete: 'CASCADE'});
+    Follow.belongsTo(models.User, { as: 'following', onDelete: 'CASCADE'});
   };
   return Follow;
 };

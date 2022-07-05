@@ -1,6 +1,6 @@
 #editTitlePrompt{
     font-size:20px;
-    color:#03045E;
+    color:#8860D0;
 
 }
 #editPostTitle{
@@ -38,9 +38,9 @@
   
 }
 .editButtonSubmit{
-    background-color: #0077B6;
-    font-family:'voguing';
-    color:#CAF0F8;
+    background-color: #31293F;
+    font-family:hedley-new-web;
+    color:#D3D9E9;
     border-radius: 4px;
     width: 100%;
     height: 40px;
@@ -50,7 +50,7 @@
 
 .editButtonSubmit:hover{
     cursor: pointer;
-    background-color: #03045E;
+    background-color: #8860D0;
 }
 
 #deletingComment{
