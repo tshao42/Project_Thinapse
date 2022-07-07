@@ -6,16 +6,12 @@ const { requireAuth } = require('../../utils/auth.js');
 
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-const homeRouter = require ('./home.js')
 const postRouter = require('./post.js')
 const commentRouter = require('./comments.js')
 const followRouter = require('./follower.js')
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-
-//home page
-router.use('/', homeRouter);
 
 //posts page
 router.use('/posts', postRouter);
